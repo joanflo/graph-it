@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>game</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="game.css" rel="stylesheet" />
+    <script src="game.js"></script>
+</head>
+<body>
+    <div class="game fragment">
+        <header aria-label="Header content" role="banner">
+            <h1 class="titlearea win-type-ellipsis">
+                <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+                <span id="pagetitle"></span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            
+            <div id="gameColumn">
+                <Canvas id="board" Width="600" Height="600" >
+                </Canvas>
+            </div>
+
+            <div id="infoColumn">
+
+                <!-- reshare, refresh, rotate / mute / - -->
+
+                <div class="options" style="height:176px;">
+                    <!-- row 1 -->
+                    <button class="options" data-win-control="WinJS.UI.AppBarCommand" 
+                        data-win-options="{id:'cmdHelp', label:'Solve flow', icon:'help', tooltip:'Solve pipe'}">
+                    </button>
+                    <button class="options" data-win-control="WinJS.UI.AppBarCommand" 
+                        data-win-options="{id:'cmdHome', label:'Home', icon:'home', tooltip:'Go home'}">
+                    </button>
+                    <button class="options" data-win-control="WinJS.UI.AppBarCommand" 
+                        data-win-options="{id:'cmdSound', label:'Sound', icon:'volume', tooltip:'Sound'}">
+                    </button>
+
+                    <!-- row 2 -->
+                    <button class="options" data-win-control="WinJS.UI.AppBarCommand" 
+                        data-win-options="{id:'cmdPrevious', label:'Previous level', icon:'back', tooltip:'Previous level'}">
+                    </button>
+                    <button class="options" data-win-control="WinJS.UI.AppBarCommand" 
+                        data-win-options="{id:'cmdRestart', label:'Restart level', icon:'refresh', tooltip:'Restart level'}">
+                    </button>
+                    <button class="options" data-win-control="WinJS.UI.AppBarCommand" 
+                        data-win-options="{id:'cmdNext', label:'Next level', icon:'forward', tooltip:'Next level'}">
+                    </button>
+                </div>
+
+                <div class="options" style="height:74px;">
+                    <div class="marker" style="width:113px;">
+                        <p class="marker" id="flows">Flows: <b>-</b></p>
+                        <p class="marker" id="fill">Fill: <b>-</b></p>
+                    </div>
+                    <div class="marker" id="img_marker" style="width:74px;">
+                        
+                    </div>
+                    <div class="marker" style="width:113px;">
+                        <p class="marker" id="best">Best: <b>-</b></p>
+                        <p class="marker" id="moves">Moves: <b>-</b></p>
+                    </div>
+                </div>
+
+                <div id="commercials"
+                    data-win-control="MicrosoftNSJS.Advertising.AdControl" 
+                    data-win-options="{applicationId: '997e2d5a-2fe4-41b1-98ba-1fc06b02acc8', adUnitId: '143127'}">
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+</html>

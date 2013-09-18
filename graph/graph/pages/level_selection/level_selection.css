@@ -1,0 +1,109 @@
+﻿.level_selection section[role=main] {
+    margin-top: 20px;
+    margin-left: -70px;
+    margin-right: -70px;
+    height: 550px;
+
+    overflow-y: hidden;
+    overflow-x: scroll;
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+}
+
+
+div.level_category {
+    float: left;
+    width: 450px;
+    height: 550px;
+    margin: 25px;
+}
+
+div.level_category_title {
+    margin: 0px 10px;
+    height: 45px;
+    padding-bottom: 10px;
+}
+
+div.level_category_items {
+    width: 100%;
+    height: 100%;
+}
+
+div.level_item {
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    background-size: 100% 100%;
+}
+div.level_item:hover {
+    background-color: transparent;
+}
+
+.gold {
+    background-image: url(/images/level/trophy_gold.png);
+}
+.silver {
+    background-image: url(/images/level/trophy_silver.png);
+}
+.bronze {
+    background-image: url(/images/level/trophy_bronze.png);
+}
+.empty {
+    background-image: url(/images/level/empty.png);
+}
+
+.type0 {
+    background-color: #E51400;
+}
+.type0:hover {
+    background-image: url(/images/level/play_0.png);
+}
+.type1 {
+    background-color: #F0A30A;
+}
+.type1:hover {
+    background-image: url(/images/level/play_1.png);
+}
+.type2 {
+    background-color: #00A000;
+}
+.type2:hover {
+    background-image: url(/images/level/play_2.png);
+}
+.type3 {
+    background-color: #1FAEFF;
+}
+.type3:hover {
+    background-image: url(/images/level/play_3.png);
+}
+.type4 {
+    background-color: #DA46DA;
+}
+.type4:hover {
+    background-image: url(/images/level/play_4.png);
+}
+
+.overlay_level_item {
+    margin-top: 45px;
+    width: 70px;
+    height: 25px;
+    text-align: right;
+}
+
+
+
+
+@media screen and (-ms-view-state: snapped) {
+    .level_selection section[role=main] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .level_selection section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}

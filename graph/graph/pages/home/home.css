@@ -1,0 +1,93 @@
+﻿.home section[role=main] {
+    margin: auto;
+    width: 660px;
+    height: 600px;
+}
+
+
+.logo_header {
+    margin-top: 80px;
+    height: 140px;
+}
+
+
+#column1 {
+    margin-top: 90px;
+    float: left;
+    width: 450px;
+    height: 300px;
+}
+
+#column2 {
+    margin-top: 90px;
+    float: left;
+    width: 190px;
+    height: 300px;
+    margin-left: 20px;
+}
+
+
+.heading1 {
+    width: 450px;
+    height: 300px;
+    
+    background-color: #b200ff;
+    background-image: url(/images/headings/heading1.png);
+}
+.heading1:hover {
+    background-image: url(/images/headings/heading1_hover.png);
+}
+
+
+.heading2 {
+    width: 190px;
+    height: 120px;
+    
+    background-color: #ed00ff;
+    background-image: url(/images/headings/heading2.png);
+}
+.heading2:hover {
+    background-image: url(/images/headings/heading2_hover.png);
+}
+
+
+.heading3 {
+    width: 190px;
+    height: 70px;
+    margin-top: 20px;
+
+    
+    background-image: url(/images/headings/heading3.png);
+}
+.heading3:hover {
+    background-image: url(/images/headings/heading3_hover.png);
+}
+
+
+.heading4 {
+    width: 190px;
+    height: 70px;
+    margin-top: 20px;
+
+    background-color: #8EC1DA;
+    background-image: url(/images/headings/heading4.png);
+}
+.heading4:hover {
+    background-image: url(/images/headings/heading4_hover.png);
+}
+
+
+
+@media screen and (-ms-view-state: snapped) {
+    .home section[role=main] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .home section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
