@@ -84,6 +84,12 @@ function getLevelInfo(levelCode) {
     }
     level.dots = dotList;
 
+    level.size = new Object();
+    var sizeAux = xmlCategory.getAttribute("size");
+    sizeAux = sizeAux.split('x');
+    level.size.i = sizeAux[0];
+    level.size.j = sizeAux[1];
+
     return level;
 }
 

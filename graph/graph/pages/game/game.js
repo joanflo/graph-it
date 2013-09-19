@@ -9,6 +9,8 @@
     var bestMarker;
     var movesMarker;
 
+    var board;
+
 
     WinJS.UI.Pages.define("/pages/game/game.html", {
 
@@ -21,11 +23,16 @@
             // markers
             initMarkers(level);
 
+            // board
+            board = new Board(level);
 
-
-
-
-
+            // touchscreen events
+            var gameBoard = document.getElementById("board");
+            gameBoard.addEventListener("MSPointerDown", controlManager, false);
+            gameBoard.addEventListener("MSPointerUp", controlManager, false);
+            gameBoard.addEventListener("MSPointerMove", controlManager, false);
+            var gesture = new MSGesture();
+            gesture.target = gameBoard;
 
             // app bar icons
             var buttons = document.getElementsByTagName('button');
@@ -44,22 +51,36 @@
         }
     });
 
-
+    var x = 0;
     function controlManager(evt) {
-        switch (evt.target.id) {
-            case "cmdHelp":
+        
+        switch (evt.type) {
+            case "MSPointerMove":
+            case "MSPointerDown":
+            case "MSPointerUp":
+                // touch & left mouse button only
+                if (evt.pointerType == evt.MSPOINTER_TYPE_TOUCH || evt.button == 0 || evt.type == "MSPointerMove") {
+                    board.update(evt.offsetX, evt.offsetY, evt.type);
+                }
                 break;
-            case "cmdHome":
-                WinJS.Navigation.navigate("pages/home/home.html", "yes");
-                break;
-            case "cmdSound":
-                WinJS.UI.SettingsFlyout.showSettings("settings", "/pages/settings/settings.html");
-                break;
-            case "cmdPrevious":
-                break;
-            case "cmdRestart":
-                break;
-            case "cmdNext":
+
+            case "click":
+                switch (evt.target.id) {
+                    case "cmdHelp":
+                        break;
+                    case "cmdHome":
+                        WinJS.Navigation.navigate("pages/home/home.html", "yes");
+                        break;
+                    case "cmdSound":
+                        WinJS.UI.SettingsFlyout.showSettings("settings", "/pages/settings/settings.html");
+                        break;
+                    case "cmdPrevious":
+                        break;
+                    case "cmdRestart":
+                        break;
+                    case "cmdNext":
+                        break;
+                }
                 break;
         }
     }

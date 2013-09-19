@@ -9,8 +9,14 @@
 
 #gameColumn {
     float: left;
-    width: 560px;
-    height: 560px;
+    width: 556px;
+    height: 556px;
+
+    background-color: #F96400;
+    padding: 2px;
+}
+
+#board {
     background-color: black;
 }
 

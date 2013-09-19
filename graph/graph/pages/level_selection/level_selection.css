@@ -8,6 +8,7 @@
     overflow-x: scroll;
     display: -ms-flexbox;
     -ms-flex-direction: row;
+    scrollbar-base-color: #F96400;
 }
 
 
