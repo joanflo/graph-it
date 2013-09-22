@@ -72,13 +72,13 @@ function getLevelInfo(levelCode) {
     var dotList = new Array(xmlDot.length);
     for (var i = 0; i < xmlDot.length; i++) {
         var dot = new Object();
-        dot.pair = xmlDot[i].getAttribute("pair");
+        dot.pair = parseInt(xmlDot[i].getAttribute("pair"));
 
         dot.position = new Object();
         var posAux = xmlDot[i].getAttribute("position");
         posAux = posAux.split('x');
-        dot.position.i = posAux[0];
-        dot.position.j = posAux[1];
+        dot.position.i = parseInt(posAux[0]);
+        dot.position.j = parseInt(posAux[1]);
 
         dotList[i] = dot;
     }

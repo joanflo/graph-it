@@ -51,7 +51,7 @@
         }
     });
 
-    var x = 0;
+
     function controlManager(evt) {
         
         switch (evt.type) {
