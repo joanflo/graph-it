@@ -45,11 +45,11 @@ p.charmsBar {
     margin-left: 120px;
 }
 h3.charmsBar {
-    font-size:20px;
+    font-size: 20px;
 }
 .charmsBarPane {
-    margin-top:36px;
-    margin-left:48px;
+    margin-top: 36px;
+    margin-left: 48px;
 }
 .charmsBarTitle {
     margin-left: 36px;
@@ -57,6 +57,26 @@ h3.charmsBar {
 .charmsBarContent {
      margin-top: 24px;
 }
+
+
+
+#helpFlyout {
+    width: 456px;
+    background-color: #F96400;
+    background-image: url('/images/headings/heading2_hover.png');
+    background-repeat: no-repeat;
+    background-position: 290px 2px; 
+    border-color: white;
+}
+#confirmHelp {
+    float: right;
+    background-color: white;
+}
+p.flyout {
+    margin: 2px;
+    color: white;
+}
+
 
 
 

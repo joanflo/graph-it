@@ -3,6 +3,9 @@
 var xmlDoc;
 var dataFile;
 
+var maxCategories;
+var levelsPerCategory;
+
 
 function openDataFile() {
     Windows.Storage.ApplicationData.current.roamingFolder.getFileAsync("data.xml")
@@ -30,6 +33,7 @@ function saveDataFile() {
 // info (array): name, size, level moves (array)
 function getCategoryList() {
     var xmlCategory = xmlDoc.getElementsByTagName('category');
+    maxCategories = xmlCategory.length;
     var categoryList = new Array(xmlCategory.length);
 
     for (var i = 0; i < xmlCategory.length; i++) {
@@ -63,6 +67,7 @@ function getLevelInfo(levelCode) {
     levelCode = levelCode.split('-');
 
     var xmlCategory = xmlDoc.getElementsByTagName('category')[levelCode[0]];
+    levelsPerCategory = xmlCategory.getElementsByTagName('level').length;
     var xmlLevel = xmlCategory.getElementsByTagName('level')[levelCode[1]];
 
     level.moves = xmlLevel.getAttribute("moves");
