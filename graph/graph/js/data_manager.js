@@ -108,3 +108,182 @@ function setLevelMoves(levelCode, moves) {
 
     saveDataFile();
 }
+
+
+
+
+
+
+function createRandomLevels(size, pairDotsNumber) {
+    /* RULES:
+        - Two dots of the same pair can not stay in contiguous cells
+        - A level can be solved <====> you can complete all flows & fill the entire board
+    */
+
+}
+
+
+
+var FREE = -1;
+var OCCUPY = -2;
+function solveLevel(size, dots) {
+    // INITIALIZING DATA STRUCTURES
+    // pipes & paths
+    var dotsPairsNumber = dots.length / 2;
+    var pipes = new Array(dotsPairsNumber);
+    var pathsMatrix = new Array(dotsPairsNumber);
+    // board matrix
+    var boardMatrix = new Array(size.i);
+    for (var i = 0; i < size.i; i++) {
+        boardMatrix[i] = new Array(size.j);
+        for (var j = 0; j < size.j; j++) {
+            boardMatrix[i][j] = FREE;
+        }
+    }
+    for (var x = 0; x < dots.length; x++) {
+        var i = dots[x].position.i;
+        var j = dots[x].position.j;
+        boardMatrix[i][j] = dots[x].pair;
+    }
+    /*
+    boardMatrix[3][0] = OCCUPY;
+    boardMatrix[3][1] = OCCUPY;
+    boardMatrix[3][2] = OCCUPY;
+    boardMatrix[4][2] = OCCUPY;
+    boardMatrix[4][3] = OCCUPY;
+    boardMatrix[4][4] = OCCUPY;
+    */
+
+    // SOLVING LEVEL
+    // get all individual solutions for each dot pair
+    for (var x = 0; x < dotsPairsNumber; x++) {
+        // get both pair dots position
+        var dotPositions = getDotsPairPositions(x, dots);
+        // calculate all valid paths between both dots
+        var lastPos = dotPositions.last;
+        boardMatrix[lastPos.i][lastPos.j] = FREE;
+        pathsMatrix[x] = calculatePaths(dotPositions.first, lastPos, boardMatrix);
+        boardMatrix[lastPos.i][lastPos.j] = x;
+    }
+    
+    // trying different combinations of paths of each dot pair to find one that fills the entire board
+    /* TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    var solved = false;
+    var i = 0;
+    var maxCombinations = 0;
+    var combination = new Array(dotsPairsNumber);
+    for (var x = 0; x < dotsPairsNumber; x++) {
+        maxCombinations += pathsMatrix[x].length;
+    }
+    while (!solved && i < maxCombinations) {
+        for (var x = 0; x < dotsPairsNumber; x++) {
+
+            combination[x].push(path[x][counter[x]]);
+
+        }
+        if (isSolution(combination)) {
+            solved = true;
+        }
+        i++;
+    }
+    
+
+    // returning solution
+    if (solved) {
+        return pipes;
+    } else {
+        return -1;
+    }*/
+}
+
+
+function getDotsPairPositions(pair, dots) {
+    var positions = new Object();
+    var i = 0;
+    var found = false;
+    var num = 0;
+
+    while (!found && i < dots.length) {
+        if (dots[i].pair == pair) {
+            switch (num) {
+                case 0:
+                    positions.first = dots[i].position;
+                    num++;
+                    break;
+                case 1:
+                    positions.last = dots[i].position;
+                    found = true;
+                    break;
+            }
+        }
+        i++;
+    }
+
+    return positions;
+}
+
+
+function calculatePaths(pos, lastPos, boardMatrix) {
+    console.log("[" + pos.i + ", " + pos.j + "]");
+
+    // depth-first tree traversal
+    if (isLastPosition(pos, lastPos)) {
+        // solution
+        console.log("exit!");
+    } else {
+        var positions = getValidContiguousPositions(pos, boardMatrix);
+        // For each neighbor
+        for (var x = 0; x < positions.length; x++) {
+            var pos = positions[x];
+            boardMatrix[pos.i][pos.j] = OCCUPY;
+            calculatePaths(pos, lastPos, boardMatrix);
+            boardMatrix[pos.i][pos.j] = FREE;
+        }
+    }
+}
+
+
+function getValidContiguousPositions(pos, boardMatrix) {
+    var n = boardMatrix.length;
+    var m = boardMatrix[0].length;
+    var i = pos.i;
+    var j = pos.j;
+
+    // 4-connect [pos.i, pos.j]
+    var positions = new Array();
+    // EAST [pos.i + 1, pos.j]
+    if (i + 1 < n && boardMatrix[i + 1][j] == FREE) {
+        positions.push({
+            i: i + 1,
+            j: j
+        });
+    }
+    // WEST [pos.i - 1, pos.j]
+    if (i - 1 >= 0 && boardMatrix[i - 1][j] == FREE) {
+        positions.push({
+            i: i - 1,
+            j: j
+        });
+    }
+    // NORTH [pos.i, pos.j - 1]
+    if (j - 1 >= 0 && boardMatrix[i][j - 1] == FREE) {
+        positions.push({
+            i: i,
+            j: j - 1
+        });
+    }
+    // SOUTH [pos.i, pos.j + 1]
+    if (j + 1 < m && boardMatrix[i][j + 1] == FREE) {
+        positions.push({
+            i: i,
+            j: j + 1
+        });
+    }
+
+    return positions;
+}
+
+
+function isLastPosition(pos1, pos2) {
+    return (pos1.i == pos2.i) && (pos1.j == pos2.j);
+}

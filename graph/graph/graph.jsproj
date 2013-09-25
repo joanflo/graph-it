@@ -75,6 +75,11 @@
     <Content Include="images\headings\heading3_hover.png" />
     <Content Include="images\headings\heading4.png" />
     <Content Include="images\headings\heading4_hover.png" />
+    <Content Include="images\how_to_play\step1.png" />
+    <Content Include="images\how_to_play\step2.png" />
+    <Content Include="images\how_to_play\step3.png" />
+    <Content Include="images\how_to_play\step4.png" />
+    <Content Include="images\how_to_play\step5.png" />
     <Content Include="images\level\empty.png" />
     <Content Include="images\level\play_0.png" />
     <Content Include="images\level\play_1.png" />

@@ -80,6 +80,18 @@ p.flyout {
 
 
 
+div.step {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-base-color: #F96400;
+    height: 525px;
+}
+img.step {
+    width: 200px;
+}
+
+
+
 
 @media screen and (-ms-view-state: fullscreen-landscape) {
 }

@@ -12,6 +12,7 @@
     var board;
     var levelInfo;
     var level;
+    var pipesSolved;
 
 
     WinJS.UI.Pages.define("/pages/game/game.html", {
@@ -43,6 +44,7 @@
                 buttons[i].addEventListener("click", controlManager, true);
             }
             document.getElementById('confirmHelp').addEventListener("click", askUseHelp, true);
+            pipesSolved = 0;
 
         },
 
@@ -96,7 +98,9 @@
 
 
     function askUseHelp() {
-        // TODO
+        var pipes = solveLevel(level.size, level.dots);
+        board.setPipe(pipes[pipesSolved]);
+        pipesSolved++;
     }
 
 
@@ -191,6 +195,7 @@
     function restartLevel() {
         initMarkers(level);
         board = new Board(level);
+        pipesSolved = 0;
     }
 
 
