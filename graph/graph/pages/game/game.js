@@ -98,8 +98,19 @@
 
 
     function askUseHelp() {
+        var t = new Date().getTime();
         var pipes = solveLevel(level.size, level.dots);
-        board.setPipe(pipes[pipesSolved]);
+        console.log(t);
+        console.log(new Date().getTime() - t);
+        board.setPipe(pipes[pipesSolved], pipesSolved);
+        pipesSolved++;
+
+
+        board.setPipe(pipes[pipesSolved], pipesSolved);
+        pipesSolved++;
+        board.setPipe(pipes[pipesSolved], pipesSolved);
+        pipesSolved++;
+        board.setPipe(pipes[pipesSolved], pipesSolved);
         pipesSolved++;
     }
 

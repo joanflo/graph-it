@@ -43,15 +43,15 @@ function Board(level) {
     }
     // adding dots position to board matrix
     var dots = level.dots;
-    for (var i = 0; i < dots.length; i++) {
-        this.setCell(CELL_DOT, dots[i].pair, dots[i].position.i, dots[i].position.j);
+    for (var x = 0; x < dots.length; x++) {
+        this.setCell(CELL_DOT, dots[x].pair, dots[x].position.i, dots[x].position.j);
     }
 
     // number of dot pairs = maximum number of pipes
     this.dotsPairsNumber = dots.length / 2;
 
     // colors & images (index corresponds to pair number)
-    this.dotColors = ["#E51400", "#F0A30A", "#00A000", "#1FAEFF", "#DA46DA"];
+    this.dotColors = ["#E51400", "#F0A30A", "#00A000", "#1FAEFF", "#DA46DA", "#647687", "#8C0020", "#FF0089", "#163D0C", "#300073", "#FFFFFF", "#F56600", "#825A2C", "#310E43", "#BDB76B"];
     this.backgroundImages = this.loadBackgroundImages();
 
     // canvas
@@ -130,6 +130,7 @@ Board.prototype.update = function (x, y, evtType) {
                         }
                         break;
                 }
+
             }
 
             break;
@@ -183,7 +184,6 @@ Board.prototype.update = function (x, y, evtType) {
                 }
             }
 
-
             break;
         case "MSPointerUp":
             // null
@@ -196,36 +196,48 @@ Board.prototype.update = function (x, y, evtType) {
 
 Board.prototype.updatePipe = function (pair, i, j) {
     var pipe = this.pipes[pair];
-    var position = [i, j];
-
     if (pipe == null) {
         pipe = new Array();
-
-    } else {
-        //agafar sa cell (i,j), comprovar si es un punt. Si ho es, mirar si coincideix amb pipe[0]. Si no coincideix,
-        // nova tueria començant per aquell punt
-        var cellAux = this.getCell(i, j);
-        if (cellAux.type == CELL_DOT) {
-            var firstPos = pipe[0];
-            if (!this.isSamePosition(position, firstPos)) {
-                //this.deletePipe(pair, firstPos[0], firstPos[1]);
-                //pipe = new Array();
-            }
-        }
     }
 
     // checking previous conditions before push new position
-    if (this.areContiguousPositions(pipe[pipe.length - 1], position)) {
+    var lastPos = pipe[pipe.length - 1];
+    var position = [i, j];
+    var index = this.indexOfObject(pipe, position);
+    if (this.areContiguousPositions(lastPos, position)) {
         // contiguous positions
-        if (this.indexOfObject(pipe, position) != -1) {
-            // existing position
-            this.deletePipe(pair, i, j);
+        if (index != 0) {
+            if (index != -1) {
+                // existing position
+                this.deletePipe(pair, i, j);
+            }
+            pipe.push(position);
+            this.setCell(CELL_PIPE, this.currentCellCode, i, j);
         }
-        pipe.push(position);
-        this.setCell(CELL_PIPE, this.currentCellCode, i, j);
+
+    } else { // negat de areContiguousPositions no serveix, hem d'assegurarnos que hem fet clic al punt
+        var firstPos = pipe[0];
+        this.deletePipe(pair, firstPos[0], firstPos[1]);
+        pipe = new Array(position);
     }
 
     this.pipes[pair] = pipe;
+};
+
+
+Board.prototype.setPipe = function (pipe, pair) {
+
+    var x = pipe[0].i * this.cellWidth + 1;
+    var y = pipe[0].j * this.cellHeight + 1;
+    this.update(x, y, "MSPointerDown");
+
+    for (var a = 1; a < pipe.length; a++) {
+        x = pipe[a].i * this.cellWidth + 1;
+        y = pipe[a].j * this.cellHeight + 1;
+        this.update(x, y, "MSPointerMove");
+    }
+
+    this.update(x, y, "MSPointerDown");
 };
 
 
@@ -236,20 +248,46 @@ Board.prototype.deletePipe = function (pair, i, j) {
     var position = [i, j];
     var index = this.indexOfObject(pipe, position);
     var posNum = pipe.length;
-    for (var x = index; x < posNum; x++) {
-        if (x != index) {
-            var posAux = pipe[index];
+
+    if (!this.isSamePosition(pipe[0], position)) {
+        /*
+        var posAux = pipe[0];
+        var cell = this.getCell(posAux[0], posAux[1]);
+        if (cell.type != CELL_BACKGROUND_DOT) {
+            index++;
+        }
+        */
+        var posAux = pipe[pipe.length - 1];
+        cell = this.getCell(posAux[0], posAux[1]);
+        if (cell.type == CELL_BACKGROUND_DOT) {
+            posNum--;
+            this.setCell(CELL_DOT, cell.code, posAux[0], posAux[1]);
+            pipe.splice(pipe.length - 1, 1);
+        }
+
+        for (var x = index; x < posNum; x++) {
+            if (x != index) {
+                posAux = pipe[index];
+                this.setCell(CELL_EMPTY, pair, posAux[0], posAux[1]);
+            }
+            pipe.splice(index, 1);
+        }
+
+        // empty pipe?
+        if (pipe.length == 0) {
+            pipe = null;
+        }
+
+        this.pipes[pair] = pipe;
+
+
+    } else {
+        this.setCell(CELL_DOT, pair, position[0], position[1]);
+        for (var x = 1; x < pipe.length; x++) {
+            var posAux = pipe[x];
             this.setCell(CELL_EMPTY, pair, posAux[0], posAux[1]);
         }
-        pipe.splice(index, 1);
     }
-
-    // empty pipe?
-    if (pipe.length == 0) {
-        pipe = null;
-    }
-
-    this.pipes[pair] = pipe;
 };
 
 

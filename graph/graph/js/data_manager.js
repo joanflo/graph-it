@@ -126,12 +126,17 @@ function createRandomLevels(size, pairDotsNumber) {
 
 var FREE = -1;
 var OCCUPY = -2;
+var pathsMatrix;
+var currentPair;
 function solveLevel(size, dots) {
     // INITIALIZING DATA STRUCTURES
     // pipes & paths
     var dotsPairsNumber = dots.length / 2;
     var pipes = new Array(dotsPairsNumber);
-    var pathsMatrix = new Array(dotsPairsNumber);
+    pathsMatrix = new Array(dotsPairsNumber);
+    for (var x = 0; x < dotsPairsNumber; x++) {
+        pathsMatrix[x] = new Array();
+    }
     // board matrix
     var boardMatrix = new Array(size.i);
     for (var i = 0; i < size.i; i++) {
@@ -145,14 +150,6 @@ function solveLevel(size, dots) {
         var j = dots[x].position.j;
         boardMatrix[i][j] = dots[x].pair;
     }
-    /*
-    boardMatrix[3][0] = OCCUPY;
-    boardMatrix[3][1] = OCCUPY;
-    boardMatrix[3][2] = OCCUPY;
-    boardMatrix[4][2] = OCCUPY;
-    boardMatrix[4][3] = OCCUPY;
-    boardMatrix[4][4] = OCCUPY;
-    */
 
     // SOLVING LEVEL
     // get all individual solutions for each dot pair
@@ -161,39 +158,31 @@ function solveLevel(size, dots) {
         var dotPositions = getDotsPairPositions(x, dots);
         // calculate all valid paths between both dots
         var lastPos = dotPositions.last;
+        currentPair = x;
         boardMatrix[lastPos.i][lastPos.j] = FREE;
-        pathsMatrix[x] = calculatePaths(dotPositions.first, lastPos, boardMatrix);
+        calculatePaths(new Array(dotPositions.first), dotPositions.first, lastPos, boardMatrix);
         boardMatrix[lastPos.i][lastPos.j] = x;
     }
-    
+
+    // JOINING PARTIAL SOLUTIONS
     // trying different combinations of paths of each dot pair to find one that fills the entire board
-    /* TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var solved = false;
-    var i = 0;
-    var maxCombinations = 0;
-    var combination = new Array(dotsPairsNumber);
-    for (var x = 0; x < dotsPairsNumber; x++) {
-        maxCombinations += pathsMatrix[x].length;
-    }
-    while (!solved && i < maxCombinations) {
-        for (var x = 0; x < dotsPairsNumber; x++) {
-
-            combination[x].push(path[x][counter[x]]);
-
-        }
-        if (isSolution(combination)) {
+    var combinations = cartesianProductOf(pathsMatrix);
+    var x = 0;
+    while (!solved && x < combinations.length) {
+        if (isSolution(cloneMatrix(boardMatrix), combinations[x])) {
             solved = true;
+            pipes = combinations[x];
         }
-        i++;
+        x++;
     }
     
-
-    // returning solution
+    // RETURNING SOLUTION
     if (solved) {
         return pipes;
     } else {
         return -1;
-    }*/
+    }
 }
 
 
@@ -223,21 +212,24 @@ function getDotsPairPositions(pair, dots) {
 }
 
 
-function calculatePaths(pos, lastPos, boardMatrix) {
+function calculatePaths(path, pos, lastPos, boardMatrix) {
     console.log("[" + pos.i + ", " + pos.j + "]");
 
     // depth-first tree traversal
     if (isLastPosition(pos, lastPos)) {
         // solution
-        console.log("exit!");
+        var pathAux = cloneArray(path); // clone: cannot use splice(0) cause only works if the array contains simple data types
+        pathsMatrix[currentPair].push(pathAux);
     } else {
         var positions = getValidContiguousPositions(pos, boardMatrix);
         // For each neighbor
         for (var x = 0; x < positions.length; x++) {
-            var pos = positions[x];
-            boardMatrix[pos.i][pos.j] = OCCUPY;
-            calculatePaths(pos, lastPos, boardMatrix);
-            boardMatrix[pos.i][pos.j] = FREE;
+            var posAux = positions[x];
+            boardMatrix[posAux.i][posAux.j] = OCCUPY;
+            path.push(posAux);
+            calculatePaths(path, posAux, lastPos, boardMatrix);
+            path.splice(path.length - 1, 1);
+            boardMatrix[posAux.i][posAux.j] = FREE;
         }
     }
 }
@@ -286,4 +278,73 @@ function getValidContiguousPositions(pos, boardMatrix) {
 
 function isLastPosition(pos1, pos2) {
     return (pos1.i == pos2.i) && (pos1.j == pos2.j);
+}
+
+
+function cloneArray(arr) {
+    var arrAux = new Array();
+    for (var x = 0; x < arr.length; x++) {
+        arrAux[x] = new Object();
+        arrAux[x].i = arr[x].i;
+        arrAux[x].j = arr[x].j;
+    }
+    return arrAux;
+}
+
+
+function cloneMatrix(mat) {
+    var matAux = new Array();
+    for (var x = 0; x < mat.length; x++) {
+        matAux[x] = new Array();
+        for (var y = 0; y < mat[0].length; y++) {
+            matAux[x][y] = mat[x][y];
+        }
+    }
+    return matAux;
+}
+
+
+function cartesianProductOf(arguments) {
+    return Array.prototype.reduce.call(arguments, function (a, b) {
+        var ret = [];
+        a.forEach(function (a) {
+            b.forEach(function (b) {
+                ret.push(a.concat([b]));
+            });
+        });
+        return ret;
+    }, [[]]);
+}
+
+
+function isSolution(boardMatrix, paths) {
+    var cellsNumber = boardMatrix.length * boardMatrix[0].length;
+    var cellsCount = paths.length * 2; // initial dot number
+    var validBoard = true;
+
+    // for each path
+    var x = 0;
+    while (validBoard && x < paths.length) {
+        var path = paths[x];
+        // for each position
+        var y = 1;
+        while (validBoard && y < path.length - 1) {
+            var pos = path[y];
+            var cell = boardMatrix[pos.i][pos.j];
+            switch (cell) {
+                case FREE:
+                    cellsCount++;
+                    boardMatrix[pos.i][pos.j] = OCCUPY;
+                    break;
+                default:
+                    validBoard = false;
+                    break;
+            }
+            y++;
+        }
+        x++;
+    }
+
+    // filled entire board?
+    return cellsCount == cellsNumber;
 }
