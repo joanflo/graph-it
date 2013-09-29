@@ -143,6 +143,8 @@
     <Content Include="js\data_manager.js" />
     <Content Include="js\default.js" />
     <Content Include="js\navigator.js" />
+    <Content Include="js\soundmanager2.js" />
+    <Content Include="js\sound_manager.js" />
     <Content Include="js\text_manager.js" />
     <Content Include="pages\about\about.html" />
     <Content Include="pages\game\board.js" />
@@ -160,6 +162,11 @@
     <Content Include="pages\privacy\privacy.html" />
     <Content Include="pages\settings\settings.html" />
     <Content Include="pages\settings\settings.js" />
+    <Content Include="sounds\click.wav" />
+    <Content Include="sounds\level_completed.mp3" />
+    <Content Include="sounds\pipe_back.wav" />
+    <Content Include="sounds\pipe_broken.wav" />
+    <Content Include="sounds\pipe_completed.wav" />
     <None Include="graph_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

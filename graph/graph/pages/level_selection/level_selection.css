@@ -96,15 +96,69 @@ div.level_item:hover {
 
 
 @media screen and (-ms-view-state: snapped) {
+    h1.titlearea {
+        margin-top: -650px;
+    }
     .level_selection section[role=main] {
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 100px;
+        height: 2000px;
+
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -ms-flex-direction: column;
+    }
+
+    div.level_category {
+        width: 800px;
+        height: 900px;
+    }
+
+    div.level_item {
+        width: 140px;
+        height: 140px;
+    }
+
+    .overlay_level_item {
+        margin-top: 115px;
+        width: 140px;
+        height: 25px;
+    }
+}
+
+@media screen and (-ms-view-state: filled) {
+    .level_selection section[role=main] {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
+    h1.titlearea {
+        margin-top: -500px;
+    }
+
     .level_selection section[role=main] {
         margin-left: 100px;
-        margin-right: 100px;
+        height: 1600px;
+
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -ms-flex-direction: column;
+    }
+
+    div.level_category {
+        width: 800px;
+        height: 900px;
+    }
+
+    div.level_item {
+        width: 140px;
+        height: 140px;
+    }
+
+    .overlay_level_item {
+        margin-top: 115px;
+        width: 140px;
+        height: 25px;
     }
 }

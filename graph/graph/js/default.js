@@ -17,7 +17,9 @@ var game;
     app.addEventListener("activated", function (args) {
 
         loadCharacterImages();
+        initSounds();
         openDataFile();
+
 
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (app.sessionState.history) {

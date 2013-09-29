@@ -18,10 +18,6 @@
       <VisualElements DisplayName="Doterama" Logo="images\logo.png" SmallLogo="images\smalllogo.png" Description="Doterama is a puzzle game whose aim is to connect each pair of matching color dots to create a continuous flow. Pair all colors and fill the entire board. Enhance your mind solving different difficulty modes, from easy and simple to challenging and really hard. New levels and game modes will be added soon." ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" WideLogo="images\widelogo.png" />
         <SplashScreen Image="images\splashscreen.png" />
-        <InitialRotationPreference>
-          <Rotation Preference="landscape" />
-          <Rotation Preference="landscapeFlipped" />
-        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>

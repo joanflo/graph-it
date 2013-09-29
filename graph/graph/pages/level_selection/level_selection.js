@@ -54,6 +54,7 @@
 
 
     function levelSelected(evt) {
+        listenSound(CLICK_SOUND);
         WinJS.Navigation.navigate("pages/game/game.html", evt.currentTarget.id);
     }
 

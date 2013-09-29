@@ -73,15 +73,46 @@ p.marker {
 
 
 @media screen and (-ms-view-state: snapped) {
+
+    #viewbox {
+        margin-top: 200px;
+        margin-left: 120px;
+        width: 500px;
+    }
+
+    header {
+        margin-left: 65px;
+    }
+
     .game section[role=main] {
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 100px;
+    }
+
+    #infoColumn {
+        margin: 0px;
+        clear: both;
+    }
+    div.options {
+        width: 360px;
     }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {
+
     .game section[role=main] {
-        margin-left: 100px;
-        margin-right: 100px;
+        margin: auto;
+    
+        margin-left: 220px;
+        margin-top: 60px;
+    }
+
+    #infoColumn {
+        clear: both;
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+
+    div.options {
+        width: 360px;
     }
 }

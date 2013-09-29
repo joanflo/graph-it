@@ -26,7 +26,6 @@ var EAST_WEST = 9;
 =========================== BUILDER ===========================
 ============================================================ */
 
-
 function Board(level) {
 
     // level size
@@ -65,6 +64,7 @@ function Board(level) {
     // pipes related variables
     this.isDrawingPipe = false;
     this.currentCellCode;
+    this.oldCellCode = -1;
     this.oldCellPos;
     this.pipes = new Array(this.dotsPairsNumber);
     for (var i = 0; i < this.dotsPairsNumber; i++) {
@@ -80,265 +80,300 @@ function Board(level) {
 
 
 
-
 /* ============================================================
 ========================== FUNCTIONS ==========================
 ============================================================ */
 
-
 Board.prototype.update = function (x, y, evtType) {
     var cellPos = this.localizeCell(x, y);
+    var i = cellPos[0];
+    var j = cellPos[1];
+    var cellPos = [i, j];
+    var cell = this.getCell(i, j);
+
+    // is current cell contiguous (4-connect) to the last cell?
+    if (this.areContiguousCells(this.oldCellPos, cellPos)) {
+        //this.oldCellPos = [i, j];
+    } else {
+        //this.isDrawingPipe = false;
+        //return;
+    }
 
     switch (evtType) {
         case "MSPointerMove":
-
             if (this.isDrawingPipe && !this.isSamePosition(this.oldCellPos, cellPos)) {
                 this.oldCellPos = cellPos;
 
-                var cell = this.getCell(cellPos[0], cellPos[1]);
                 switch (cell.type) {
                     case CELL_EMPTY:
-                        this.updatePipe(this.currentCellCode, cellPos[0], cellPos[1]);
+                        // adding new pipe, no checkings required
+                        this.updatePipeOnEmpty(this.currentCellCode, i, j);
                         break;
-
                     case CELL_DOT:
-                        if (cell.code == this.currentCellCode) { // same dot code (pipe completed)
-                            this.updatePipe(cell.code, cellPos[0], cellPos[1]);
-                            this.setCell(CELL_BACKGROUND_DOT, this.currentCellCode, cellPos[0], cellPos[1]);
-                        }
+                        // we're over a dot with the same or different cell code
+                        this.updatePipeOnDot(this.currentCellCode, i, j);
                         break;
-
                     case CELL_BACKGROUND_DOT:
-                        if (cell.code == this.currentCellCode) { // same dot code
-                            this.updatePipe(cell.code, cellPos[0], cellPos[1]);
-                        }
+                        // we're over a different point of another pair
+                        this.updatePipeOnDot(this.currentCellCode, i, j);
+                        this.oldCellPos = undefined;
                         break;
-
                     case CELL_PIPE:
-                        this.updatePipe(this.currentCellCode, cellPos[0], cellPos[1]);
-                        //this.setCell(CELL_PIPE, this.currentCellCode, cellPos[0], cellPos[1]);
-                        if (cell.code != this.currentCellCode) { // deleting another pipe
-                            this.deletePipe(cell.code, cellPos[0], cellPos[1]);
-                        }
+                        // breaking a no finished different pipe or coming back in the current pipe
+                        this.updatePipeOnPipe(this.currentCellCode, i, j);
                         break;
-
                     case CELL_BACKGROUND_PIPE:
-                        this.updatePipe(this.currentCellCode, cellPos[0], cellPos[1]);
-                        //this.setCell(CELL_PIPE, this.currentCellCode, cellPos[0], cellPos[1]);
-                        if (cell.code != this.currentCellCode) { // deleting another pipe
-                            this.deletePipe(cell.code, cellPos[0], cellPos[1]);
-                        }
+                        // breaking a completed pipe (no current pipe)
+                        this.updatePipeOnPipe(this.currentCellCode, i, j);
                         break;
                 }
-
             }
-
             break;
+
         case "MSPointerDown":
+            this.currentCellCode = cell.code;
             this.oldCellPos = cellPos;
 
-            var cell = this.getCell(cellPos[0], cellPos[1]);
-            if (this.isDrawingPipe) {
-
-                var firstDotPos = this.pipes[this.currentCellCode][0];
-                if (cell.type == CELL_BACKGROUND_DOT && !this.isSamePosition(cellPos, firstDotPos)) {
-                    // pipe completed
-                    this.completePipe(this.currentCellCode);
-                }
-
-                // pipe finished
-                this.isDrawingPipe = false;
-                this.currentCellCode = null;
-                //this.pipes[this.currentCellCode] = null;
-
-            } else {
-                // pipe started
-                this.isDrawingPipe = true;
-
-                switch (cell.type) {
-                    case CELL_EMPTY:
-                        // null
-                        break;
-
-                    case CELL_DOT:
-                        this.currentCellCode = cell.code;
-                        this.updatePipe(cell.code, cellPos[0], cellPos[1]);
-                        this.setCell(CELL_BACKGROUND_DOT, cell.code, cellPos[0], cellPos[1]);
-                        break;
-
-                    case CELL_BACKGROUND_DOT:
-                        this.currentCellCode = cell.code;
-                        this.updatePipe(cell.code, cellPos[0], cellPos[1]);
-                        break;
-
-                    case CELL_PIPE:
-                        this.currentCellCode = cell.code;
-                        this.updatePipe(cell.code, cellPos[0], cellPos[1]);
-                        this.setCell(CELL_BACKGROUND_PIPE, cell.code, cellPos[0], cellPos[1]);
-                        break;
-
-                    case CELL_BACKGROUND_PIPE:
-                        this.currentCellCode = cell.code;
-                        this.updatePipe(cell.code, cellPos[0], cellPos[1]);
-                        break;
-                }
+            switch (cell.type) {
+                case CELL_EMPTY:
+                    this.isDrawingPipe = false;
+                    break;
+                case CELL_DOT:
+                case CELL_BACKGROUND_DOT:
+                    // starting new pipe
+                    this.startPipe(cell.code, i, j);
+                    this.isDrawingPipe = true;
+                    break;
+                case CELL_PIPE:
+                case CELL_BACKGROUND_PIPE:
+                    // continuing pipe
+                    this.continuePipe(cell.code, i, j);
+                    this.isDrawingPipe = true;
+                    break;
             }
-
             break;
+
         case "MSPointerUp":
-            // null
+            if (this.isDrawingPipe) {
+                switch (cell.type) {
+                    case CELL_DOT:
+                    case CELL_BACKGROUND_DOT:
+                        // check if pipe is completed. If it is, fill his background.
+                        this.completePipe(cell.code);
+                        break;
+                }
+                if (this.currentCellCode != this.oldCellCode) {
+                    this.oldCellCode = this.currentCellCode;
+                    this.moves++;
+                }
+            }
+            this.currentCellCode = undefined;
+            this.oldCellPos = undefined;
+            this.isDrawingPipe = false;
             break;
     }
+};
 
-    this.drawBoard();
+Board.prototype.drawBoard = function () {
+    // clear board
+    this.canvasCtx.fillStyle = '#000000';
+    this.canvasCtx.fillRect(0, 0, this.boardWidth, this.boardHeight);
+
+    // draw board lines
+    this.canvasCtx.fillStyle = '#F96400';
+    for (var i = 0; i <= this.n; i++) { // horitzontal
+        this.drawLine(0, (i * this.cellHeight) - 2, this.boardWidth, 4);
+    }
+    for (var j = 0; j <= this.m; j++) { // vertical
+        this.drawLine((j * this.cellWidth) - 2, 0, 4, this.boardHeight);
+    }
+
+    // draw board matrix
+    for (var i = 0; i < this.n; i++) {
+        for (var j = 0; j < this.m; j++) {
+            var cell = this.getCell(i, j);
+            this.drawCell(cell.type, cell.code, i, j);
+        }
+    }
+};
+
+Board.prototype.drawCell = function (cellType, cellCode, i, j) {
+    switch (cellType) {
+        case CELL_EMPTY:
+            // nothing to draw
+            break;
+        case CELL_DOT:
+            this.drawDot(cellCode, i, j);
+            break;
+        case CELL_BACKGROUND_DOT:
+            this.drawBackground(cellCode, i, j);
+            this.drawPipe(cellCode, i, j);
+            this.drawDot(cellCode, i, j);
+            break;
+        case CELL_PIPE:
+            this.drawPipe(cellCode, i, j);
+            break;
+        case CELL_BACKGROUND_PIPE:
+            this.drawBackground(cellCode, i, j);
+            this.drawPipe(cellCode, i, j);
+            break;
+    }
 };
 
 
-Board.prototype.updatePipe = function (pair, i, j) {
-    var pipe = this.pipes[pair];
-    if (pipe == null) {
-        pipe = new Array();
-    }
 
-    // checking previous conditions before push new position
-    var lastPos = pipe[pipe.length - 1];
-    var position = [i, j];
-    var index = this.indexOfObject(pipe, position);
-    if (this.areContiguousPositions(lastPos, position)) {
-        // contiguous positions
-        if (index != 0) {
-            if (index != -1) {
-                // existing position
-                this.deletePipe(pair, i, j);
-            }
-            pipe.push(position);
-            this.setCell(CELL_PIPE, this.currentCellCode, i, j);
-        }
+// pipe functions
 
-    } else { // negat de areContiguousPositions no serveix, hem d'assegurarnos que hem fet clic al punt
+Board.prototype.startPipe = function (cellCode, i, j) {
+    var pipe = this.pipes[cellCode];
+    if (pipe != null) {
         var firstPos = pipe[0];
-        this.deletePipe(pair, firstPos[0], firstPos[1]);
-        pipe = new Array(position);
+        this.deletePipe(cellCode, firstPos[0], firstPos[1]);
     }
 
-    this.pipes[pair] = pipe;
+    pipe = new Array();
+    var pos = [i, j];
+
+    // adding first position
+    pipe.push(pos);
+    this.setCell(CELL_BACKGROUND_DOT, cellCode, i, j);
+
+    this.pipes[cellCode] = pipe;
 };
 
+Board.prototype.continuePipe = function (cellCode, i, j) {
+    var pipe = this.pipes[cellCode];
+    var pos = [i, j];
 
-Board.prototype.setPipe = function (pipe, pair) {
-
-    var x = pipe[0].i * this.cellWidth + 1;
-    var y = pipe[0].j * this.cellHeight + 1;
-    this.update(x, y, "MSPointerDown");
-
-    for (var a = 1; a < pipe.length; a++) {
-        x = pipe[a].i * this.cellWidth + 1;
-        y = pipe[a].j * this.cellHeight + 1;
-        this.update(x, y, "MSPointerMove");
+    var index = this.indexOfObject(pipe, pos);
+    if (!this.isLastPosition(pipe, index)) {
+        // deleting all positions from 'pos'
+        this.deletePipe(cellCode, i, j);    // TODO: pipe = this.... necessari?
+        // setting all previous positions before 'pos'
+        var firstPos = pipe[0];
+        this.setCell(CELL_BACKGROUND_DOT, cellCode, firstPos[0], firstPos[1]);
+        for (var x = 1; x < index - 1; x++) {
+            var posAux = pipe[x];
+            this.setCell(CELL_PIPE, cellCode, posAux[0], posAux[1]);
+        }
+        // adding new position
+        pipe.push(pos);
+        this.setCell(CELL_PIPE, cellCode, i, j);
     }
 
-    this.update(x, y, "MSPointerDown");
+    this.pipes[cellCode] = pipe;
 };
 
+Board.prototype.deletePipe = function (cellCode, i, j) {
+    var pipe = this.pipes[cellCode];
+    var pos = [i, j];
 
-Board.prototype.deletePipe = function (pair, i, j) {
-    var pipe = this.pipes[pair];
-
-    // deleting pipe positions cutted by another pipe
-    var position = [i, j];
-    var index = this.indexOfObject(pipe, position);
-    var posNum = pipe.length;
-
-    if (!this.isSamePosition(pipe[0], position)) {
-        /*
-        var posAux = pipe[0];
-        var cell = this.getCell(posAux[0], posAux[1]);
-        if (cell.type != CELL_BACKGROUND_DOT) {
-            index++;
-        }
-        */
-        var posAux = pipe[pipe.length - 1];
-        cell = this.getCell(posAux[0], posAux[1]);
-        if (cell.type == CELL_BACKGROUND_DOT) {
-            posNum--;
-            this.setCell(CELL_DOT, cell.code, posAux[0], posAux[1]);
-            pipe.splice(pipe.length - 1, 1);
-        }
-
-        for (var x = index; x < posNum; x++) {
-            if (x != index) {
-                posAux = pipe[index];
-                this.setCell(CELL_EMPTY, pair, posAux[0], posAux[1]);
+    // deleting all positions from 'index'
+    var index = this.indexOfObject(pipe, pos);
+    if (index != -1) {
+        var length = pipe.length;
+        for (var x = index; x < length; x++) {
+            var posAux = pipe[index];
+            var cellAux = this.getCell(posAux[0], posAux[1]);
+            switch (cellAux.type) {
+                case CELL_PIPE:
+                case CELL_BACKGROUND_PIPE:
+                    this.setCell(CELL_EMPTY, cellCode, posAux[0], posAux[1]);
+                    break;
+                case CELL_DOT:
+                case CELL_BACKGROUND_DOT:
+                    this.setCell(CELL_DOT, cellCode, posAux[0], posAux[1]);
+                    break;
             }
             pipe.splice(index, 1);
         }
 
-        // empty pipe?
-        if (pipe.length == 0) {
-            pipe = null;
-        }
+        this.pipes[cellCode] = pipe;
+    }
+};
 
-        this.pipes[pair] = pipe;
+Board.prototype.completePipe = function (cellCode) {
+    var pipe = this.pipes[cellCode];
+    if (pipe.length == 1) {
+        return;
+    }
 
+    var firstPos = pipe[0];
+    var lastPos = pipe[pipe.length - 1];
 
-    } else {
-        this.setCell(CELL_DOT, pair, position[0], position[1]);
-        for (var x = 1; x < pipe.length; x++) {
+    var firstCell = this.getCell(firstPos[0], firstPos[1]);
+    var lastCell = this.getCell(lastPos[0], lastPos[1]);
+
+    // check if pipe is completed
+    if ((firstCell.type == CELL_DOT || firstCell.type == CELL_BACKGROUND_DOT)
+        && (lastCell.type == CELL_DOT || lastCell.type == CELL_BACKGROUND_DOT)) {
+        // complete pipe filling his background
+        this.setCell(CELL_BACKGROUND_DOT, cellCode, firstPos[0], firstPos[1]); // initial dot
+        for (var x = 1; x < pipe.length - 1; x++) { // intermediate pipes
             var posAux = pipe[x];
-            this.setCell(CELL_EMPTY, pair, posAux[0], posAux[1]);
+            this.setCell(CELL_BACKGROUND_PIPE, cellCode, posAux[0], posAux[1]); // final dot
         }
+        this.setCell(CELL_BACKGROUND_DOT, cellCode, lastPos[0], lastPos[1]); // final dot
+
+        // sound
+        listenSound(PIPE_COMPLETED_SOUND);
     }
 };
 
-
-Board.prototype.completePipe = function (pair) {
-    var pipe = this.pipes[pair];
-    
-    for (var x = 1; x < pipe.length - 1; x++) {
-        var posAux = pipe[x];
-        this.setCell(CELL_BACKGROUND_PIPE, pair, posAux[0], posAux[1]);
-    }
+Board.prototype.updatePipeOnEmpty = function (cellCode, i, j) {
+    this.setCell(CELL_PIPE, cellCode, i, j);
+    this.pipes[cellCode].push([i, j]);
 };
 
+Board.prototype.updatePipeOnDot = function (cellCode, i, j) {
+    var cell = this.getCell(i, j);
+    if (cell.code == cellCode) {
+        // over a dot with the same cell code
+        var pipe = this.pipes[cellCode];
+        var pos = [i, j];
+        var index = this.indexOfObject(pipe, pos);
+        if (this.isFirstPosition(index)) {
+            // over initial dot (we're come back)
+            if (pipe.length > 0) {
+                this.deletePipe(cellCode, i, j);
+                pipe = null;
+                this.oldCellPos = undefined;
+                this.isDrawingPipe = false;
+            }
+        } else {
+            // over final dot
+            this.setCell(CELL_BACKGROUND_DOT, cellCode, i, j);
+            pipe.push(pos);
+        }
+        this.pipes[cellCode] = pipe;
 
-Board.prototype.areContiguousPositions = function (pos1, pos2) {
-    if (pos1 == undefined) {
-        return true;
-    }
-
-    var x1 = pos1[0];
-    var y1 = pos1[1];
-    var x2 = pos2[0];
-    var y2 = pos2[1];
-
-    if (x2 == x1 && y2 == y1 + 1) { // North
-        return true;
-    } else if (x2 == x1 && y2 == y1 - 1) { // South
-        return true;
-    } else if (x2 == x1 + 1 && y2 == y1) { // West
-        return true;
-    } else if (x2 == x1 - 1 && y2 == y1) { // East
-        return true;
     } else {
-        return false;
+        // over a dot with different cell code
+        this.oldCellPos = undefined;
+        this.isDrawingPipe = false;
     }
 };
 
+Board.prototype.updatePipeOnPipe = function (cellCode, i, j) {
+    var pipe = this.pipes[cellCode];
 
-Board.prototype.compareRelativePositions = function (pos1, pos2) {
-    if (pos1[0] > pos2[0]) { // x1 > x2
-        return WEST;
-    } else if (pos1[0] < pos2[0]) { // x1 < x2
-        return EAST;
-    } else { // x1 = x2
-        if (pos1[1] > pos2[1]) { // y1 > y2
-            return NORTH;
-        } else if (pos1[1] < pos2[1]) { // y1 < y2
-            return SOUTH;
-        }
+    // case:
+    // 1.- over a pipe with the same cell code: we're coming back in the current pipe
+    // 2.- over a pipe with different cell code: breaking a no finished different pipe
+    // 3.- breaking a completed pipe (no current pipe)
+    var cell = this.getCell(i, j);
+    if (cell.code != cellCode && cell.type == CELL_BACKGROUND_PIPE) { // 3.-
+        listenSound(PIPE_BROKEN_SOUND);
+    } else { // 1.- and 2.-
+        listenSound(PIPE_BACK_SOUND);
     }
-};
+    this.deletePipe(cell.code, i, j);
+    // adding new pipe
+    this.setCell(CELL_PIPE, cellCode, i, j);
+    pipe.push([i, j]);
 
+    this.pipes[cellCode] = pipe;
+};
 
 Board.prototype.getPipeOrientation = function (pair, i, j) {
     var pipe = this.pipes[pair];
@@ -370,7 +405,7 @@ Board.prototype.getPipeOrientation = function (pair, i, j) {
             }
             */
         } else {
-            
+
             if (currentPos[0] > previousPos[0]) { // x1 > x2
 
                 if (nextPos[0] > currentPos[0]) { // x3 > x1
@@ -433,61 +468,10 @@ Board.prototype.getPipeOrientation = function (pair, i, j) {
     }
 };
 
+Board.prototype.setPipe = function (pipe, cellCode) {
 
-Board.prototype.drawBoard = function () {
-    // clear board
-    this.canvasCtx.fillStyle = '#000000';
-    this.canvasCtx.fillRect(0, 0, this.boardWidth, this.boardHeight);
-
-    // draw board lines
-    this.canvasCtx.fillStyle = '#F96400';
-    for (var i = 0; i <= this.n; i++) { // horitzontal
-        this.drawLine(0, (i * this.cellHeight) - 2, this.boardWidth, 4);
-    }
-    for (var j = 0; j <= this.m; j++) { // vertical
-        this.drawLine((j * this.cellWidth) - 2, 0, 4, this.boardHeight);
-    }
-
-    // draw board matrix
-    for (var i = 0; i < this.n; i++) {
-        for (var j = 0; j < this.m; j++) {
-            var cell = this.getCell(i, j);
-            this.drawCell(cell.type, cell.code, i, j);
-        }
-    }
 };
 
-
-Board.prototype.drawCell = function (cellType, cellCode, i, j) {
-    switch (cellType) {
-        case CELL_EMPTY:
-            // nothing to draw
-            break;
-        case CELL_DOT:
-            this.drawDot(cellCode, i, j);
-            break;
-        case CELL_BACKGROUND_DOT:
-            this.drawBackground(cellCode, i, j);
-            this.drawPipe(cellCode, i, j);
-            this.drawDot(cellCode, i, j);
-            break;
-        case CELL_PIPE:
-            this.drawPipe(cellCode, i, j);
-            break;
-        case CELL_BACKGROUND_PIPE:
-            this.drawBackground(cellCode, i, j);
-            this.drawPipe(cellCode, i, j);
-            break;
-    }
-};
-
-
-
-
-
-/* ============================================================
-===================== AUXILIARY FUNCTIONS =====================
-============================================================ */
 
 
 // shape drawing functions
@@ -705,3 +689,48 @@ Board.prototype.getGameInfo = function () {
 
     return gameInfo;
 }
+
+Board.prototype.compareRelativePositions = function (pos1, pos2) {
+    if (pos1[0] > pos2[0]) { // x1 > x2
+        return WEST;
+    } else if (pos1[0] < pos2[0]) { // x1 < x2
+        return EAST;
+    } else { // x1 = x2
+        if (pos1[1] > pos2[1]) { // y1 > y2
+            return NORTH;
+        } else if (pos1[1] < pos2[1]) { // y1 < y2
+            return SOUTH;
+        }
+    }
+};
+
+Board.prototype.areContiguousCells = function (pos1, pos2) {
+    if (pos1 == undefined || pos2 == undefined) {
+        return false;
+    }
+
+    var x1 = pos1[0];
+    var y1 = pos1[1];
+    var x2 = pos2[0];
+    var y2 = pos2[1];
+
+    if (x2 == x1 && y2 == y1 + 1) { // North
+        return true;
+    } else if (x2 == x1 && y2 == y1 - 1) { // South
+        return true;
+    } else if (x2 == x1 + 1 && y2 == y1) { // West
+        return true;
+    } else if (x2 == x1 - 1 && y2 == y1) { // East
+        return true;
+    } else {
+        return false;
+    }
+};
+
+Board.prototype.isLastPosition = function (pipe, index) {
+    return (pipe.length - 1) == index;
+};
+
+Board.prototype.isFirstPosition = function (index) {
+    return 0 == index;
+};

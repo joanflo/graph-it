@@ -1,9 +1,11 @@
-﻿// For an introduction to the Page Control template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232511
+﻿
+var sounds;
+
+
 (function () {
     "use strict";
 
-    var sounds = new Object();
+    sounds = new Object();
     var appData = Windows.Storage.ApplicationData;
 
 
@@ -43,11 +45,5 @@
             // TODO: Respond to changes in viewState.
         }
     });
-
-
-
-
-
-
 
 })();

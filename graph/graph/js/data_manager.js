@@ -112,8 +112,6 @@ function setLevelMoves(levelCode, moves) {
 
 
 
-
-
 function createRandomLevels(size, pairDotsNumber) {
     /* RULES:
         - Two dots of the same pair can not stay in contiguous cells
