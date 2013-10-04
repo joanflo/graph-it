@@ -1,0 +1,28 @@
+<?xml encoding="UTF-8"?>
+
+
+<!-- Root -->
+<!ELEMENT data (category+)>
+
+<!-- category -->
+<!ELEMENT category (level+)>
+<!ATTLIST category name CDATA #REQUIRED>
+<!ATTLIST category size CDATA #REQUIRED>
+
+<!-- level -->
+<!ELEMENT level (dot+)>
+<!ELEMENT level (solution+)>
+<!ATTLIST level code CDATA #REQUIRED>
+
+<!-- dot -->
+<!ELEMENT dot EMPTY>
+<!ATTLIST dot pair CDATA #REQUIRED>
+<!ATTLIST dot position CDATA #REQUIRED>
+
+<!-- solution -->
+<!ELEMENT solution (path+)>
+<!ATTLIST solution pair CDATA #REQUIRED>
+
+<!-- path -->
+<!ELEMENT path EMPTY>
+<!ATTLIST path position CDATA #REQUIRED>

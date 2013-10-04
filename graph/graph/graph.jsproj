@@ -51,6 +51,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="css\default.css" />
+    <Content Include="data\data.dtd" />
+    <Content Include="data\data.xml" />
+    <Content Include="data\hola.txt" />
+    <Content Include="data\scores.dtd" />
+    <Content Include="data\scores.xml" />
     <Content Include="default.html" />
     <Content Include="images\game\bg0.png" />
     <Content Include="images\game\bg1.png" />
@@ -130,6 +135,7 @@
     <Content Include="images\text\O.png" />
     <Content Include="images\text\P.png" />
     <Content Include="images\text\Q.png" />
+    <Content Include="images\text\quote.png" />
     <Content Include="images\text\R.png" />
     <Content Include="images\text\S.png" />
     <Content Include="images\text\T.png" />

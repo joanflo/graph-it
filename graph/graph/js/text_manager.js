@@ -5,6 +5,7 @@ var numbersImages;
 var dotImage;
 var exclamationImage;
 var interrogationImage;
+var quoteImage;
 
 
 function loadCharacterImages() {
@@ -28,6 +29,7 @@ function loadCharacterImages() {
     dotImage = loadImage("text/dot.png");
     exclamationImage = loadImage("text/exclamation.png");
     interrogationImage = loadImage("text/interrogation.png");
+    quoteImage = loadImage("text/quote.png");
 }
 
 
@@ -91,6 +93,9 @@ function convertCharToImage(charCode) {
                 break;
             case 63: // interrogation
                 return interrogationImage;
+                break;
+            case 39: // simple quote
+                return quoteImage;
                 break;
             case 95: // character '_' means new_line
                 return -1;

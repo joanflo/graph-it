@@ -70,6 +70,7 @@ function Board(level) {
     for (var i = 0; i < this.dotsPairsNumber; i++) {
         this.pipes[i] = null;
     }
+    this.completedPipes = new Array(this.dotsPairsNumber);
 
     // markers
     this.moves = 0;
@@ -91,17 +92,19 @@ Board.prototype.update = function (x, y, evtType) {
     var cellPos = [i, j];
     var cell = this.getCell(i, j);
 
-    // is current cell contiguous (4-connect) to the last cell?
-    if (this.areContiguousCells(this.oldCellPos, cellPos)) {
-        //this.oldCellPos = [i, j];
-    } else {
-        //this.isDrawingPipe = false;
-        //return;
-    }
-
     switch (evtType) {
         case "MSPointerMove":
+            if (this.oldCellPos == null) {
+                return;
+            }
             if (this.isDrawingPipe && !this.isSamePosition(this.oldCellPos, cellPos)) {
+                if (!this.areContiguousCells(this.oldCellPos, cellPos)) {
+                    // stop pipe
+                    this.currentCellCode = undefined;
+                    this.oldCellPos = undefined;
+                    this.isDrawingPipe = false;
+                    return;
+                }
                 this.oldCellPos = cellPos;
 
                 switch (cell.type) {
@@ -294,7 +297,7 @@ Board.prototype.deletePipe = function (cellCode, i, j) {
 
 Board.prototype.completePipe = function (cellCode) {
     var pipe = this.pipes[cellCode];
-    if (pipe.length == 1) {
+    if (pipe == null || pipe.length == 1) {
         return;
     }
 
@@ -344,6 +347,7 @@ Board.prototype.updatePipeOnDot = function (cellCode, i, j) {
             // over final dot
             this.setCell(CELL_BACKGROUND_DOT, cellCode, i, j);
             pipe.push(pos);
+            this.oldCellPos = null;
         }
         this.pipes[cellCode] = pipe;
 
@@ -469,7 +473,27 @@ Board.prototype.getPipeOrientation = function (pair, i, j) {
 };
 
 Board.prototype.setPipe = function (pipe, cellCode) {
+    var pipeAux = new Array();
 
+    // initial dot
+    var pos = pipe[0];
+    pipeAux[0] = [pos.i, pos.j];
+    this.setCell(CELL_BACKGROUND_DOT, cellCode, pos.i, pos.j);
+    // pipe
+    for (var x = 1; x < pipe.length - 1; x++) {
+        pos = pipe[x];
+        pipeAux[x] = [pos.i, pos.j];
+        this.setCell(CELL_BACKGROUND_PIPE, cellCode, pos.i, pos.j);
+    }
+    // final dot
+    pos = pipe[pipe.length - 1];
+    pipeAux[pipe.length - 1] = [pos.i, pos.j];
+    this.setCell(CELL_BACKGROUND_DOT, cellCode, pos.i, pos.j);
+
+    this.pipes[cellCode] = pipeAux;
+
+    // sound
+    listenSound(PIPE_COMPLETED_SOUND);
 };
 
 
@@ -559,8 +583,6 @@ Board.prototype.drawPipe = function (pair, i, j) {
     if (orientation != undefined) {
         this.canvasCtx.arc(centerX, centerY, radio, 0, 2 * Math.PI);
         this.canvasCtx.fill();
-    } else {
-
     }
 };
 
@@ -671,6 +693,7 @@ Board.prototype.getGameInfo = function () {
     // completed pipes
     var completedPipes = 0;
     for (var i = 0; i < this.pipes.length; i++) {
+        this.completedPipes[i] = false;
         var pipe = this.pipes[i];
         if (pipe != null && pipe.length > 1) {
             var pos = pipe[0];
@@ -679,6 +702,7 @@ Board.prototype.getGameInfo = function () {
             var lastCell = this.getCell(pos[0], pos[1]);
             if (firstCell.type == lastCell.type && !(this.isDrawingPipe && this.currentCellCode == i)) {
                 completedPipes++;
+                this.completedPipes[i] = true;
             }
         }
     }
@@ -689,6 +713,21 @@ Board.prototype.getGameInfo = function () {
 
     return gameInfo;
 }
+
+Board.prototype.getFirstPipeIndex = function () {
+    // first pipe index avaiable
+    var index = -1;
+    var x = 0;
+    var found = false;
+    while (x < this.pipes.length && !found) {
+        if (!this.completedPipes[x]) {
+            found = true;
+            index = x;
+        }
+        x++;
+    }
+    return index;
+};
 
 Board.prototype.compareRelativePositions = function (pos1, pos2) {
     if (pos1[0] > pos2[0]) { // x1 > x2
@@ -706,7 +745,7 @@ Board.prototype.compareRelativePositions = function (pos1, pos2) {
 
 Board.prototype.areContiguousCells = function (pos1, pos2) {
     if (pos1 == undefined || pos2 == undefined) {
-        return false;
+        return true;
     }
 
     var x1 = pos1[0];

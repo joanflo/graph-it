@@ -1,0 +1,13 @@
+<?xml encoding="UTF-8"?>
+
+
+<!-- Root -->
+<!ELEMENT scores (category+)>
+
+<!-- category -->
+<!ELEMENT category (level+)>
+
+<!-- level -->
+<!ELEMENT level EMPTY>
+<!ATTLIST level code CDATA #REQUIRED>
+<!ATTLIST level moves CDATA #REQUIRED>

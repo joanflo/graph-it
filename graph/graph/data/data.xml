@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE data SYSTEM "data.dtd">
+<data>
+
+	<!-- 5 -->
+	<category name="Protostar Pack" size="5x5">
+		<level code="0-0">
+			<dot pair="0" position="1x0"/>
+			<dot pair="0" position="4x3"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="2" position="0x4"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="4x1"/>
+		</level>
+		<level code="0-1">
+			<dot pair="0" position="3x3"/>
+			<dot pair="0" position="4x0"/>
+			<dot pair="1" position="0x0"/>
+			<dot pair="1" position="3x0"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="4x4"/>
+		</level>
+		<level code="1-">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="2x2"/>
+			<dot pair="2" position="0x0"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="3" position="4x3"/>
+		</level>
+		<level code="1-">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="2" position="3x0"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="3" position="4x2"/>
+		</level>
+		<level code="1-">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="2x2"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="4x4"/>
+			<dot pair="2" position="1x0"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="3x3"/>
+		</level>
+		<level code="0-5">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="2x2"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="2" position="0x3"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="3" position="3x2"/>
+		</level>
+		<level code="0-6">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="2x3"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="2x2"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="2" position="4x1"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="4x4"/>
+		</level>
+		<level code="0-7">
+			<dot pair="0" position="2x1"/>
+			<dot pair="0" position="4x0"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="0x0"/>
+			<dot pair="3" position="2x0"/>
+		</level>
+		<level code="0-8">
+			<dot pair="0" position="2x3"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="3" position="2x4"/>
+		</level>
+		<level code="0-9">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="3x4"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="3x3"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="0x2"/>
+			<dot pair="3" position="4x0"/>
+		</level>
+		<level code="0-10">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="1" position="4x3"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="2" position="2x2"/>
+			<dot pair="3" position="1x0"/>
+			<dot pair="3" position="4x2"/>
+		</level>
+		<level code="0-11">
+			<dot pair="0" position="2x4"/>
+			<dot pair="0" position="3x1"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="3x2"/>
+			<dot pair="3" position="4x4"/>
+		</level>
+		<level code="0-12">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="3x0"/>
+			<dot pair="1" position="3x3"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="3" position="4x3"/>
+		</level>
+		<level code="0-13">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="1x2"/>
+			<dot pair="1" position="0x0"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="2" position="0x4"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="4x2"/>
+		</level>
+		<level code="0-14">
+			<dot pair="0" position="2x1"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="2x3"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="2" position="0x0"/>
+			<dot pair="2" position="0x3"/>
+			<dot pair="3" position="4x2"/>
+			<dot pair="3" position="4x4"/>
+		</level>
+		<level code="0-15">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="4x1"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="4x4"/>
+			<dot pair="2" position="0x1"/>
+			<dot pair="2" position="4x2"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="3" position="3x4"/>
+		</level>
+		<level code="0-16">
+			<dot pair="0" position="2x3"/>
+			<dot pair="0" position="2x4"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="4x4"/>
+			<dot pair="2" position="1x0"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="3" position="0x0"/>
+			<dot pair="3" position="4x2"/>
+		</level>
+		<level code="0-17">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="3x2"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="1" position="2x0"/>
+			<dot pair="2" position="2x3"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="3" position="1x3"/>
+		</level>
+		<level code="0-18">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="4x1"/>
+		</level>
+		<level code="0-19">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="3x1"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="3x2"/>
+			<dot pair="2" position="0x4"/>
+			<dot pair="2" position="3x4"/>
+			<dot pair="3" position="0x0"/>
+			<dot pair="3" position="4x4"/>
+		</level>
+
+		<level code="1-0">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="3x0"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="2" position="2x3"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="4" position="3x4"/>
+			<dot pair="4" position="4x2"/>
+		</level>
+		<level code="1-1">
+			<dot pair="0" position="3x0"/>
+			<dot pair="0" position="4x2"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="4x3"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="3x1"/>
+			<dot pair="4" position="2x0"/>
+			<dot pair="4" position="2x1"/>
+		</level>
+		<level code="1-2">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="1x2"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="2x4"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="1-3">
+			<dot pair="0" position="1x2"/>
+			<dot pair="0" position="2x1"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="4x4"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="3x1"/>
+		</level>
+		<level code="1-4">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="2x3"/>
+			<dot pair="2" position="0x4"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="3" position="1x1"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="4" position="1x0"/>
+			<dot pair="4" position="3x0"/>
+		</level>
+	</category>
+	
+	<category name="Cepheus Constellation" size="5x5">
+		<level code="1-0">
+			<dot pair="0" position="1x3"/>
+			<dot pair="0" position="2x4"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="1" position="3x0"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="3" position="4x2"/>
+			<dot pair="4" position="3x3"/>
+			<dot pair="4" position="3x4"/>
+		</level>
+		<level code="1-1">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="1x2"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="3x0"/>
+		</level>
+		<level code="1-2">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="2x4"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="1" position="3x4"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="1x2"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="4" position="0x0"/>
+			<dot pair="4" position="0x1"/>
+		</level>
+		<level code="1-3">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="3x4"/>
+			<dot pair="1" position="0x0"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="2" position="3x0"/>
+			<dot pair="2" position="4x1"/>
+			<dot pair="3" position="3x1"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="1-4">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="3x3"/>
+			<dot pair="1" position="3x4"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="4" position="0x1"/>
+			<dot pair="4" position="2x0"/>
+		</level>
+		<level code="1-5">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="1x4"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="3x2"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="3x1"/>
+			<dot pair="4" position="4x2"/>
+		</level>
+		<level code="1-6">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="4x3"/>
+			<dot pair="1" position="0x0"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="1x1"/>
+			<dot pair="3" position="3x0"/>
+			<dot pair="4" position="1x0"/>
+			<dot pair="4" position="3x1"/>
+		</level>
+		<level code="1-7">
+			<dot pair="0" position="1x3"/>
+			<dot pair="0" position="2x1"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="2" position="2x2"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="0x0"/>
+			<dot pair="3" position="1x2"/>
+			<dot pair="4" position="1x0"/>
+			<dot pair="4" position="4x0"/>
+		</level>
+		<level code="1-8">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="4x3"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="4x4"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="0x0"/>
+			<dot pair="4" position="1x0"/>
+		</level>
+		<level code="1-9">
+			<dot pair="0" position="1x4"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="4x2"/>
+			<dot pair="2" position="0x1"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="3" position="0x0"/>
+			<dot pair="3" position="3x1"/>
+			<dot pair="4" position="2x0"/>
+			<dot pair="4" position="4x1"/>
+		</level>
+		<level code="1-10">
+			<dot pair="0" position="2x2"/>
+			<dot pair="0" position="4x0"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="3" position="0x3"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="3x4"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="1-11">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="1" position="2x4"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="3x2"/>
+		</level>
+		<level code="1-12">
+			<dot pair="0" position="2x2"/>
+			<dot pair="0" position="2x4"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="1" position="4x4"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="2" position="3x4"/>
+			<dot pair="3" position="0x2"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="4" position="0x1"/>
+			<dot pair="4" position="1x4"/>
+		</level>
+		<level code="1-13">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="3x0"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="3x2"/>
+			<dot pair="3" position="3x4"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="1-14">
+			<dot pair="0" position="2x4"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="3x2"/>
+		</level>
+		<level code="1-15">
+			<dot pair="0" position="2x0"/>
+			<dot pair="0" position="3x1"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="2" position="0x0"/>
+			<dot pair="2" position="0x3"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="3" position="4x2"/>
+			<dot pair="4" position="3x2"/>
+			<dot pair="4" position="4x3"/>
+		</level>
+		<level code="1-16">
+			<dot pair="0" position="1x0"/>
+			<dot pair="0" position="1x3"/>
+			<dot pair="1" position="0x0"/>
+			<dot pair="1" position="2x4"/>
+			<dot pair="2" position="2x3"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="4x0"/>
+			<dot pair="4" position="4x2"/>
+		</level>
+		<level code="1-17">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="2x0"/>
+			<dot pair="1" position="3x3"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="2" position="3x4"/>
+			<dot pair="2" position="4x2"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="0x4"/>
+			<dot pair="4" position="2x4"/>
+		</level>
+		<level code="1-18">
+			<dot pair="0" position="3x2"/>
+			<dot pair="0" position="4x0"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="2" position="0x0"/>
+			<dot pair="2" position="0x3"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="4" position="1x1"/>
+			<dot pair="4" position="1x2"/>
+		</level>
+		<level code="1-19">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="2x3"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="2x4"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="3x1"/>
+			<dot pair="4" position="1x0"/>
+			<dot pair="4" position="2x1"/>
+		</level>
+		<level code="1-20">
+			<dot pair="0" position="2x0"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="2x4"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="1" position="3x4"/>
+			<dot pair="2" position="1x0"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="4" position="0x0"/>
+		</level>
+		<level code="1-21">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="1x0"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="2" position="4x2"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="1x1"/>
+			<dot pair="4" position="1x3"/>
+		</level>
+		<level code="1-22">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="1x4"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="1" position="3x3"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="1x2"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="4" position="1x0"/>
+			<dot pair="4" position="1x1"/>
+		</level>
+		<level code="1-23">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="4x2"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="3x2"/>
+			<dot pair="2" position="0x1"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="4" position="0x0"/>
+			<dot pair="4" position="4x1"/>
+		</level>
+		<level code="1-24">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="3x2"/>
+			<dot pair="1" position="3x3"/>
+			<dot pair="2" position="3x0"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="0x0"/>
+			<dot pair="4" position="2x0"/>
+		</level>
+	</category>
+	
+	
+	<!-- 6 -->
+	<category name="Average Star Pack" size="6x6">
+		<level code="2-0">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="5x1"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="1" position="4x4"/>
+			<dot pair="2" position="3x4"/>
+			<dot pair="2" position="4x2"/>
+			<dot pair="3" position="1x2"/>
+			<dot pair="3" position="2x5"/>
+			<dot pair="4" position="1x5"/>
+			<dot pair="4" position="2x3"/>
+		</level>
+		<level code="2-1">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="0x4"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="4" position="3x2"/>
+			<dot pair="4" position="3x4"/>
+		</level>
+		<level code="2-2">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="3x4"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="2-3">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="5x2"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="0x5"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="1x5"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="3" position="4x2"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="4x4"/>
+			<dot pair="5" position="2x5"/>
+			<dot pair="5" position="3x2"/>
+		</level>
+		<level code="2-4">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="0x5"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="2x2"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="4" position="2x5"/>
+			<dot pair="4" position="5x0"/>
+			<dot pair="5" position="2x4"/>
+			<dot pair="5" position="4x1"/>
+		</level>
+		<level code="2-5">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="5x3"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="1" position="5x2"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="2" position="2x3"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="3x0"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="5" position="3x1"/>
+			<dot pair="5" position="3x3"/>
+		</level>
+		<level code="2-6">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="5x1"/>
+			<dot pair="1" position="5x4"/>
+			<dot pair="2" position="0x2"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="2x5"/>
+			<dot pair="4" position="0x5"/>
+			<dot pair="4" position="1x2"/>
+			<dot pair="5" position="3x1"/>
+			<dot pair="5" position="4x4"/>
+		</level>
+		<level code="2-7">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="1x5"/>
+			<dot pair="1" position="5x1"/>
+			<dot pair="2" position="0x2"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="3x4"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="2x5"/>
+			<dot pair="5" position="3x3"/>
+			<dot pair="5" position="4x4"/>
+		</level>
+		<level code="2-8">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="1x1"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="0x3"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="0x4"/>
+			<dot pair="4" position="5x0"/>
+			<dot pair="5" position="0x5"/>
+			<dot pair="5" position="5x1"/>
+		</level>
+		<level code="2-9">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="3x4"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="2" position="1x5"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="5x5"/>
+			<dot pair="4" position="1x3"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="5" position="4x1"/>
+			<dot pair="5" position="4x3"/>
+		</level>
+		<level code="2-10">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="2x4"/>
+			<dot pair="1" position="0x5"/>
+			<dot pair="1" position="2x5"/>
+			<dot pair="2" position="1x0"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="5x0"/>
+			<dot pair="4" position="2x1"/>
+			<dot pair="4" position="3x4"/>
+			<dot pair="5" position="2x2"/>
+			<dot pair="5" position="4x4"/>
+		</level>
+		<level code="2-11">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="1" position="5x1"/>
+			<dot pair="2" position="0x3"/>
+			<dot pair="2" position="5x5"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="4" position="4x4"/>
+			<dot pair="5" position="3x2"/>
+			<dot pair="5" position="3x4"/>
+		</level>
+		<level code="2-12">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="5x2"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="4x5"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="4x2"/>
+			<dot pair="3" position="3x2"/>
+			<dot pair="3" position="4x4"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="5x5"/>
+		</level>
+		<level code="2-13">
+			<dot pair="0" position="4x1"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="2" position="2x5"/>
+			<dot pair="3" position="0x2"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="2-14">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="1" position="5x2"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="2" position="4x2"/>
+			<dot pair="3" position="0x3"/>
+			<dot pair="3" position="1x5"/>
+			<dot pair="4" position="1x3"/>
+			<dot pair="4" position="4x3"/>
+		</level>
+		<level code="2-15">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="1x5"/>
+			<dot pair="1" position="2x3"/>
+			<dot pair="1" position="2x5"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="3" position="4x4"/>
+			<dot pair="4" position="4x5"/>
+			<dot pair="4" position="5x2"/>
+		</level>
+		<level code="2-16">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="3x2"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="2" position="5x1"/>
+			<dot pair="2" position="5x5"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="3" position="4x2"/>
+			<dot pair="4" position="1x4"/>
+			<dot pair="4" position="4x3"/>
+		</level>
+		<level code="2-17">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="2x0"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="2" position="0x3"/>
+			<dot pair="2" position="2x2"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="3" position="5x2"/>
+			<dot pair="4" position="3x4"/>
+			<dot pair="4" position="4x1"/>
+		</level>
+		<level code="2-18">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="4x3"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="1" position="2x5"/>
+			<dot pair="2" position="1x4"/>
+			<dot pair="2" position="5x1"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="3" position="4x5"/>
+			<dot pair="4" position="3x5"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="2-19">
+			<dot pair="0" position="3x0"/>
+			<dot pair="0" position="5x2"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="1" position="5x1"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="2" position="4x1"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="4x4"/>
+			<dot pair="4" position="1x4"/>
+			<dot pair="4" position="3x4"/>
+		</level>
+		<level code="2-20">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="2x5"/>
+			<dot pair="1" position="2x4"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="3x5"/>
+			<dot pair="2" position="5x4"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="3" position="5x3"/>
+			<dot pair="4" position="3x2"/>
+			<dot pair="4" position="3x4"/>
+		</level>
+		<level code="2-21">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="1x0"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="2" position="3x1"/>
+			<dot pair="3" position="5x0"/>
+			<dot pair="3" position="5x5"/>
+			<dot pair="4" position="2x4"/>
+			<dot pair="4" position="4x5"/>
+		</level>
+		<level code="2-22">
+			<dot pair="0" position="5x0"/>
+			<dot pair="0" position="5x2"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="5x1"/>
+			<dot pair="2" position="3x3"/>
+			<dot pair="2" position="5x3"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="5x5"/>
+			<dot pair="4" position="0x4"/>
+			<dot pair="4" position="4x5"/>
+		</level>
+		<level code="2-23">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x3"/>
+			<dot pair="1" position="5x3"/>
+			<dot pair="1" position="5x5"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="0x4"/>
+			<dot pair="3" position="3x2"/>
+			<dot pair="4" position="1x3"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="5" position="2x3"/>
+			<dot pair="5" position="4x1"/>
+		</level>
+		<level code="2-24">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="5x3"/>
+			<dot pair="1" position="4x3"/>
+			<dot pair="1" position="5x2"/>
+			<dot pair="2" position="1x0"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="5x0"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="4x4"/>
+			<dot pair="5" position="2x4"/>
+			<dot pair="5" position="5x1"/>
+		</level>
+	</category>
+	
+	<category name="Sun" size="6x6">
+		<level code="3-0">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="2x1"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="2" position="1x4"/>
+			<dot pair="2" position="4x3"/>
+			<dot pair="3" position="1x5"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="4" position="2x5"/>
+			<dot pair="4" position="4x0"/>
+		</level>
+		<level code="3-1">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="4x1"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="5x1"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="1x4"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="3" position="5x0"/>
+		</level>
+		<level code="3-2">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="1x5"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="1" position="4x3"/>
+			<dot pair="2" position="2x5"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="3x0"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="4" position="1x1"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="5" position="2x0"/>
+			<dot pair="5" position="3x3"/>
+		</level>
+		<level code="3-3">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x3"/>
+			<dot pair="1" position="0x4"/>
+			<dot pair="1" position="5x5"/>
+			<dot pair="2" position="1x0"/>
+			<dot pair="2" position="5x4"/>
+			<dot pair="3" position="2x0"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="3x1"/>
+			<dot pair="5" position="3x2"/>
+			<dot pair="5" position="4x1"/>
+		</level>
+		<level code="3-4">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="2x2"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="2" position="5x5"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="5x2"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="4" position="5x0"/>
+			<dot pair="5" position="4x0"/>
+			<dot pair="5" position="4x3"/>
+		</level>
+		<level code="3-5">
+			<dot pair="0" position="0x5"/>
+			<dot pair="0" position="4x0"/>
+			<dot pair="1" position="1x5"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="2x3"/>
+			<dot pair="2" position="2x5"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="5x3"/>
+			<dot pair="4" position="4x3"/>
+			<dot pair="4" position="4x5"/>
+			<dot pair="5" position="4x4"/>
+			<dot pair="5" position="5x5"/>
+		</level>
+		<level code="3-6">
+			<dot pair="0" position="1x0"/>
+			<dot pair="0" position="5x5"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="3x0"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="5x0"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="3" position="4x0"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="3x1"/>
+		</level>
+		<level code="3-7">
+			<dot pair="0" position="0x5"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="1x5"/>
+			<dot pair="1" position="5x3"/>
+			<dot pair="2" position="1x1"/>
+			<dot pair="2" position="5x2"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="4x2"/>
+			<dot pair="4" position="4x4"/>
+		</level>
+		<level code="3-8">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="1x3"/>
+			<dot pair="1" position="1x4"/>
+			<dot pair="1" position="5x5"/>
+			<dot pair="2" position="5x0"/>
+			<dot pair="2" position="5x4"/>
+			<dot pair="3" position="3x1"/>
+			<dot pair="3" position="3x4"/>
+		</level>
+		<level code="3-9">
+			<dot pair="0" position="3x1"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="0x2"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="1x2"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="2x2"/>
+		</level>
+		<level code="3-10">
+			<dot pair="0" position="0x4"/>
+			<dot pair="0" position="2x0"/>
+			<dot pair="1" position="0x5"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="2" position="3x0"/>
+			<dot pair="2" position="4x1"/>
+			<dot pair="3" position="3x1"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="3x3"/>
+			<dot pair="4" position="4x4"/>
+			<dot pair="5" position="4x2"/>
+			<dot pair="5" position="5x0"/>
+		</level>
+		<level code="3-11">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="5x5"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="4x5"/>
+			<dot pair="2" position="2x2"/>
+			<dot pair="2" position="3x5"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="3" position="2x5"/>
+			<dot pair="4" position="0x5"/>
+			<dot pair="4" position="1x2"/>
+			<dot pair="5" position="0x2"/>
+			<dot pair="5" position="0x4"/>
+		</level>
+		<level code="3-12">
+			<dot pair="0" position="3x4"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="2x4"/>
+			<dot pair="1" position="5x5"/>
+			<dot pair="2" position="1x5"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="3" position="0x1"/>
+			<dot pair="3" position="4x2"/>
+			<dot pair="4" position="1x1"/>
+			<dot pair="4" position="3x1"/>
+			<dot pair="5" position="1x4"/>
+			<dot pair="5" position="4x3"/>
+		</level>
+		<level code="3-13">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="2x3"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="2x0"/>
+			<dot pair="2" position="1x4"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="1x0"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="3x1"/>
+			<dot pair="4" position="4x2"/>
+		</level>
+		<level code="3-14">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="2x0"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="2" position="5x2"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="3x2"/>
+			<dot pair="4" position="0x1"/>
+			<dot pair="4" position="1x5"/>
+		</level>
+		<level code="3-15">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="3x1"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="2x0"/>
+			<dot pair="2" position="0x1"/>
+			<dot pair="2" position="5x0"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="3" position="4x3"/>
+			<dot pair="4" position="1x4"/>
+			<dot pair="4" position="3x3"/>
+		</level>
+		<level code="3-16">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="5x1"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="4x3"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="3" position="4x1"/>
+			<dot pair="3" position="4x5"/>
+			<dot pair="4" position="1x3"/>
+			<dot pair="4" position="2x4"/>
+		</level>
+		<level code="3-17">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="1x1"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="4x2"/>
+			<dot pair="2" position="2x0"/>
+			<dot pair="2" position="5x1"/>
+			<dot pair="3" position="1x4"/>
+			<dot pair="3" position="2x1"/>
+			<dot pair="4" position="2x4"/>
+			<dot pair="4" position="4x1"/>
+			<dot pair="5" position="3x4"/>
+			<dot pair="5" position="4x3"/>
+		</level>
+		<level code="3-18">
+			<dot pair="0" position="0x2"/>
+			<dot pair="0" position="1x0"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="1x4"/>
+			<dot pair="2" position="4x0"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="3" position="4x4"/>
+			<dot pair="4" position="3x3"/>
+			<dot pair="4" position="4x1"/>
+			<dot pair="5" position="2x3"/>
+			<dot pair="5" position="3x1"/>
+		</level>
+		<level code="3-19">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="2x4"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="1" position="5x0"/>
+			<dot pair="2" position="2x1"/>
+			<dot pair="2" position="5x2"/>
+			<dot pair="3" position="2x2"/>
+			<dot pair="3" position="5x3"/>
+			<dot pair="4" position="2x3"/>
+			<dot pair="4" position="4x4"/>
+			<dot pair="5" position="0x2"/>
+			<dot pair="5" position="5x4"/>
+		</level>
+		<level code="3-20">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="0x5"/>
+			<dot pair="1" position="5x5"/>
+			<dot pair="2" position="0x2"/>
+			<dot pair="2" position="3x4"/>
+			<dot pair="3" position="1x2"/>
+			<dot pair="3" position="2x3"/>
+			<dot pair="4" position="1x1"/>
+			<dot pair="4" position="3x3"/>
+			<dot pair="5" position="3x1"/>
+			<dot pair="5" position="4x3"/>
+		</level>
+		<level code="3-21">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x4"/>
+			<dot pair="1" position="0x1"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="2" position="0x2"/>
+			<dot pair="2" position="2x3"/>
+			<dot pair="3" position="0x3"/>
+			<dot pair="3" position="3x4"/>
+			<dot pair="4" position="3x3"/>
+			<dot pair="4" position="4x1"/>
+			<dot pair="5" position="4x2"/>
+			<dot pair="5" position="4x4"/>
+		</level>
+		<level code="3-22">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="0x5"/>
+			<dot pair="1" position="1x0"/>
+			<dot pair="1" position="3x1"/>
+			<dot pair="2" position="2x4"/>
+			<dot pair="2" position="5x0"/>
+			<dot pair="3" position="4x4"/>
+			<dot pair="3" position="5x1"/>
+			<dot pair="4" position="4x5"/>
+			<dot pair="4" position="5x2"/>
+		</level>
+		<level code="3-23">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="3x3"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="1" position="4x2"/>
+			<dot pair="2" position="3x2"/>
+			<dot pair="2" position="5x4"/>
+			<dot pair="3" position="1x3"/>
+			<dot pair="3" position="5x5"/>
+			<dot pair="4" position="0x5"/>
+			<dot pair="4" position="1x2"/>
+		</level>
+		<level code="3-24">
+			<dot pair="0" position="2x2"/>
+			<dot pair="0" position="5x0"/>
+			<dot pair="1" position="1x3"/>
+			<dot pair="1" position="2x1"/>
+			<dot pair="2" position="0x5"/>
+			<dot pair="2" position="5x2"/>
+			<dot pair="3" position="3x3"/>
+			<dot pair="3" position="5x1"/>
+			<dot pair="4" position="3x4"/>
+			<dot pair="4" position="4x2"/>
+		</level>
+	</category>
+
+	
+	<!-- 7 -->
+	<category name="Red Giant Pack" size="7x7">
+	</category>
+	
+	<category name="Gamma Crucis" size="7x7">
+	</category>
+	
+	
+	<!-- 8 -->
+	<category name="Planetary Nebula Pack" size="8x8">
+	</category>
+	
+	<category name="Spirograph Nebula" size="8x8">
+	</category>
+	
+	
+	<!-- 9 -->
+	<category name="White Dwarf Pack" size="9x9">
+		<level code="4-24">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="4x4"/>
+			<dot pair="1" position="1x2"/>
+			<dot pair="1" position="2x3"/>
+			<dot pair="2" position="1x3"/>
+			<dot pair="2" position="2x7"/>
+			<dot pair="3" position="2x4"/>
+			<dot pair="3" position="2x6"/>
+			<dot pair="4" position="5x0"/>
+			<dot pair="4" position="6x2"/>
+			<dot pair="5" position="4x1"/>
+			<dot pair="5" position="4x3"/>
+			<dot pair="6" position="5x1"/>
+			<dot pair="6" position="3x7"/>
+			<dot pair="7" position="6x1"/>
+			<dot pair="7" position="5x8"/>
+			<dot pair="8" position="7x1"/>
+			<dot pair="8" position="5x7"/>
+		</level>
+	</category>
+	
+	<category name="Sirius_B" size="9x9">
+	</category>
+	
+	
+	<!-- 10 -->
+	<category name="Massive Star Pack" size="10x10">
+	</category>
+	
+	<category name="Wolf Rayet 20a" size="10x10">
+	</category>
+	
+	
+	<!-- 11 -->
+	<category name="Red Supergiant Pack" size="11x11">
+	</category>
+	
+	<category name="Antares" size="11x11">
+	</category>
+	</category>
+	
+	
+	<!-- 12 -->
+	<category name="Supernova Pack" size="12x12">
+	</category>
+	
+	<category name="Kepler's Star" size="12x12">
+	</category>
+	
+	
+	<!-- 13 -->
+	<category name="Neutron Star Pack" size="13x13">
+	</category>
+	
+	<category name="Little Green Men 1" size="13x13">
+	</category>
+	
+	
+	<!-- 14 -->
+	<category name="Black Hole Pack" size="14x14">
+		<level code="18-0">
+			<dot pair="0" position="0x3"/>
+			<dot pair="0" position="10x10"/>
+			<dot pair="1" position="1x1"/>
+			<dot pair="1" position="4x0"/>
+			<dot pair="2" position="3x0"/>
+			<dot pair="2" position="6x1"/>
+			<dot pair="3" position="9x2"/>
+			<dot pair="3" position="12x5"/>
+			<dot pair="4" position="11x4"/>
+			<dot pair="4" position="13x0"/>
+			<dot pair="5" position="2x4"/>
+			<dot pair="5" position="2x13"/>
+			<dot pair="6" position="2x9"/>
+			<dot pair="6" position="2x11"/>
+			<dot pair="7" position="1x7"/>
+			<dot pair="7" position="5x6"/>
+			<dot pair="8" position="5x9"/>
+			<dot pair="8" position="7x7"/>
+			<dot pair="9" position="9x7"/>
+			<dot pair="9" position="11x11"/>
+			<dot pair="10" position="10x8"/>
+			<dot pair="10" position="11x12"/>
+			<dot pair="11" position="3x13"/>
+			<dot pair="11" position="6x10"/>
+			<dot pair="12" position="5x12"/>
+			<dot pair="12" position="8x10"/>
+			<dot pair="13" position="3x7"/>
+			<dot pair="13" position="7x10"/>
+			<dot pair="14" position="3x9"/>
+			<dot pair="14" position="9x10"/>
+		</level>
+		<level code="18-1">
+			<dot pair="0" position="1x1"/>
+			<dot pair="0" position="10x2"/>
+			<dot pair="1" position="0x12"/>
+			<dot pair="1" position="13x0"/>
+			<dot pair="2" position="0x13"/>
+			<dot pair="2" position="13x1"/>
+			<dot pair="3" position="1x5"/>
+			<dot pair="3" position="8x3"/>
+			<dot pair="4" position="1x10"/>
+			<dot pair="4" position="5x11"/>
+			<dot pair="5" position="2x3"/>
+			<dot pair="5" position="9x9"/>
+			<dot pair="6" position="2x7"/>
+			<dot pair="6" position="4x6"/>
+			<dot pair="7" position="4x2"/>
+			<dot pair="7" position="5x8"/>
+			<dot pair="8" position="4x3"/>
+			<dot pair="8" position="7x5"/>
+			<dot pair="9" position="4x10"/>
+			<dot pair="9" position="6x11"/>
+			<dot pair="10" position="9x4"/>
+			<dot pair="10" position="9x6"/>
+		</level>
+		<level code="18-2">
+			<dot pair="0" position="2x12"/>
+			<dot pair="0" position="12x1"/>
+			<dot pair="1" position="3x5"/>
+			<dot pair="1" position="4x3"/>
+			<dot pair="2" position="4x4"/>
+			<dot pair="2" position="9x10"/>
+			<dot pair="3" position="5x3"/>
+			<dot pair="3" position="11x3"/>
+			<dot pair="4" position="6x4"/>
+			<dot pair="4" position="7x6"/>
+			<dot pair="5" position="6x5"/>
+			<dot pair="5" position="8x6"/>
+			<dot pair="6" position="5x8"/>
+			<dot pair="6" position="7x9"/>
+			<dot pair="7" position="7x8"/>
+			<dot pair="7" position="10x11"/>
+			<dot pair="8" position="8x7"/>
+			<dot pair="8" position="10x6"/>
+			<dot pair="9" position="9x7"/>
+			<dot pair="9" position="12x3"/>
+			<dot pair="10" position="8x3"/>
+			<dot pair="10" position="13x6"/>
+			<dot pair="11" position="9x2"/>
+			<dot pair="11" position="12x2"/>
+			<dot pair="12" position="11x5"/>
+			<dot pair="12" position="11x11"/>
+			<dot pair="13" position="12x6"/>
+			<dot pair="13" position="13x8"/>
+		</level>
+		<level code="18-3">
+			<dot pair="0" position="0x0"/>
+			<dot pair="0" position="12x12"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="9x5"/>
+			<dot pair="2" position="1x8"/>
+			<dot pair="2" position="7x7"/>
+			<dot pair="3" position="1x12"/>
+			<dot pair="3" position="5x4"/>
+			<dot pair="4" position="2x2"/>
+			<dot pair="4" position="2x12"/>
+			<dot pair="5" position="2x6"/>
+			<dot pair="5" position="3x4"/>
+			<dot pair="6" position="2x11"/>
+			<dot pair="6" position="4x12"/>
+			<dot pair="7" position="3x12"/>
+			<dot pair="7" position="4x9"/>
+			<dot pair="8" position="3x13"/>
+			<dot pair="8" position="5x13"/>
+			<dot pair="9" position="4x3"/>
+			<dot pair="9" position="8x7"/>
+			<dot pair="10" position="4x4"/>
+			<dot pair="10" position="4x6"/>
+			<dot pair="11" position="6x5"/>
+			<dot pair="11" position="9x4"/>
+			<dot pair="12" position="6x12"/>
+			<dot pair="12" position="11x11"/>
+			<dot pair="13" position="6x13"/>
+			<dot pair="13" position="13x10"/>
+			<dot pair="14" position="8x9"/>
+			<dot pair="14" position="9x7"/>
+		</level>
+		<level code="18-4">
+			<dot pair="0" position="0x1"/>
+			<dot pair="0" position="6x6"/>
+			<dot pair="1" position="0x3"/>
+			<dot pair="1" position="2x2"/>
+			<dot pair="2" position="0x4"/>
+			<dot pair="2" position="5x11"/>
+			<dot pair="3" position="0x13"/>
+			<dot pair="3" position="12x7"/>
+			<dot pair="4" position="1x1"/>
+			<dot pair="4" position="9x3"/>
+			<dot pair="5" position="1x3"/>
+			<dot pair="5" position="3x9"/>
+			<dot pair="6" position="1x4"/>
+			<dot pair="6" position="6x9"/>
+			<dot pair="7" position="1x5"/>
+			<dot pair="7" position="4x11"/>
+			<dot pair="8" position="4x1"/>
+			<dot pair="8" position="5x6"/>
+			<dot pair="9" position="6x1"/>
+			<dot pair="9" position="6x5"/>
+			<dot pair="10" position="7x5"/>
+			<dot pair="10" position="12x4"/>
+			<dot pair="11" position="4x9"/>
+			<dot pair="11" position="7x13"/>
+			<dot pair="12" position="8x8"/>
+			<dot pair="12" position="10x3"/>
+			<dot pair="13" position="8x13"/>
+			<dot pair="13" position="13x12"/>
+			<dot pair="14" position="9x13"/>
+			<dot pair="14" position="13x13"/>
+		</level>
+	
+	
+	
+	
+	
+	
+	
+	</category>
+	
+	<category name="Cygnus X.1 " size="14x14">
+	</category>
+	
+</data>

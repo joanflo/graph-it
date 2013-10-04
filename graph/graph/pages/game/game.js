@@ -30,7 +30,6 @@
     var board;
     var levelInfo;
     var level;
-    var pipesSolved;
 
 
 
@@ -63,7 +62,6 @@
                 buttons[i].addEventListener("click", controlManager, true);
             }
             document.getElementById('confirmHelp').addEventListener("click", askUseHelp, true);
-            pipesSolved = 0;
 
             // share contract
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
@@ -147,20 +145,20 @@
 
 
     function askUseHelp() {
-        var t = new Date().getTime();
-        var pipes = solveLevel(level.size, level.dots);
-        console.log(t);
-        console.log(new Date().getTime() - t);
-        board.setPipe(pipes[pipesSolved], pipesSolved);
-        pipesSolved++;
+        // roaming settings --> hints left
 
+        
+        var index = board.getFirstPipeIndex();
+        if (index == -1) {
+            // all pipes completed
 
-        board.setPipe(pipes[pipesSolved], pipesSolved);
-        pipesSolved++;
-        board.setPipe(pipes[pipesSolved], pipesSolved);
-        pipesSolved++;
-        board.setPipe(pipes[pipesSolved], pipesSolved);
-        pipesSolved++;
+        } else {
+            var t = new Date().getTime();//borrar
+            var pipes = solveLevel(level.size, level.dots);
+            console.log(new Date().getTime() - t);//borrar
+            board.setPipe(pipes[index], index);
+        }
+        
     }
 
 
@@ -214,7 +212,7 @@
                 setLevelMoves(levelCode, gameInfo.moves);
             }
 
-            var msg = new Windows.UI.Popups.MessageDialog("Congrats! You completed the level in " + level.moves + " moves.", "Level Completed");
+            var msg = new Windows.UI.Popups.MessageDialog("Congrats! You completed the level in " + gameInfo.moves + " moves.", "Level Completed");
             msg.commands.append(new Windows.UI.Popups.UICommand("< Previous level", function (command) {
                 previousLevel();
             }, 0));
@@ -265,7 +263,6 @@
         level = getLevelInfo(levelInfo[0] + "-" + levelInfo[1]);
         initMarkers(level);
         board = new Board(level);
-        pipesSolved = 0;
         doterama.startGame();
     }
 

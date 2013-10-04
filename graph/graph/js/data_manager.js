@@ -1,40 +1,98 @@
 ﻿
-
-var xmlDoc;
+// data
+var xmlDocData;
 var dataFile;
+
+// scores
+var xmlDocScores;
+var scoresFile;
 
 var maxCategories;
 var levelsPerCategory;
 
 
-function openDataFile() {
-    Windows.Storage.ApplicationData.current.roamingFolder.getFileAsync("data.xml")
-        .then(function (file) {
+var FREE = -1;
+var OCCUPY = -2;
+
+
+function openDataFiles() {
+    var loadSettings = new Windows.Data.Xml.Dom.XmlLoadSettings;
+    loadSettings.prohibitDtd = false;
+    loadSettings.resolveExternals = false;
+
+    // get data file
+    /*
+    var uri1 = new Windows.Foundation.Uri('ms-appx:///data/data.xml');
+    Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri1).then(function (file) {
+        return file;
+    }).done(function (file) {
+        dataFile = file;
+
+        Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+            xmlDocData = doc;
+        }, false);
+    }, false);
+    */
+    // get scores file
+
+    var uri2 = new Windows.Foundation.Uri('ms-appx:///data/hola.txt');
+    Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri2).then(function (file) {
+        return file;
+    }).done(function (file) {
+        /*
+        file.moveAsync(Windows.Storage.ApplicationData.current.roamingFolder);
+
+        scoresFile = file;
+        Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+            xmlDocScores = doc;
+        }, false);
+        */
+    }, function (error) {
+        console.log(error);
+    });
+    /*
+    Windows.Storage.ApplicationData.current.roamingFolder.getFileAsync("scores.xml").then(function (file) {
+        return file;
+    }).done(function (file) {
+        scoresFile = file;
+
+        Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+            xmlDocScores = doc;
+        }, false);
+    }, function (error) {
+        // file doesn't exists, let's create it
+        console.log("1");
+        var uri2 = new Windows.Foundation.Uri('ms-appx:///data/scores.xml');
+        Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri2).then(function (file) {
+            console.log("2");
             return file;
         }).done(function (file) {
-            dataFile = file;
-
-            var loadSettings = new Windows.Data.Xml.Dom.XmlLoadSettings;
-            loadSettings.prohibitDtd = false;
-            loadSettings.resolveExternals = false;
-
-            Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
-                xmlDoc = doc;
-            }, false);
+            file.moveAsync(Windows.Storage.ApplicationData.current.roamingFolder).then(function (file) {
+                scoresFile = file;
+                console.log("3");
+                Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+                    xmlDocScores = doc;
+                    console.log("4");
+                }, false);
+            });
         }, false);
+        console.log("5");
+    });
+    */
 }
 
 
 function saveDataFile() {
-    xmlDoc.saveToFileAsync(dataFile);
+    xmlDocScores.saveToFileAsync(scoresFile);
 }
 
 
 // info (array): name, size, level moves (array)
 function getCategoryList() {
-    var xmlCategory = xmlDoc.getElementsByTagName('category');
+    var xmlCategory = xmlDocData.getElementsByTagName('category');
     maxCategories = xmlCategory.length;
     var categoryList = new Array(xmlCategory.length);
+    var xmlScoreCategory = xmlDocScores.getElementsByTagName('category');
 
     for (var i = 0; i < xmlCategory.length; i++) {
         var category = new Object();
@@ -43,11 +101,12 @@ function getCategoryList() {
 
         var xmlLevel = xmlCategory[i].getElementsByTagName('level');
         category.levelList = new Array(xmlLevel.length);
+        var xmlScoreLevel = xmlScoreCategory[i].getElementsByTagName('level');
 
         for (var j = 0; j < xmlLevel.length; j++) {
             var level = new Object();
             level.code = xmlLevel[j].getAttribute("code");
-            level.moves = xmlLevel[j].getAttribute("moves");
+            level.moves = xmlScoreLevel[j].getAttribute("moves");
             var xmlDot = xmlLevel[j].getElementsByTagName('dot');
             level.best = xmlDot.length / 2; // dots/2 = pipeline number
             category.levelList[j] = level;
@@ -60,17 +119,18 @@ function getCategoryList() {
 }
 
 
-
 // info: moves, best, dots (array --> pair, position)
 function getLevelInfo(levelCode) {
     var level = new Object();
     levelCode = levelCode.split('-');
 
-    var xmlCategory = xmlDoc.getElementsByTagName('category')[levelCode[0]];
+    var xmlCategory = xmlDocData.getElementsByTagName('category')[levelCode[0]];
     levelsPerCategory = xmlCategory.getElementsByTagName('level').length;
+    var xmlScoreCategory = xmlDocScores.getElementsByTagName('category')[levelCode[0]];
     var xmlLevel = xmlCategory.getElementsByTagName('level')[levelCode[1]];
+    var xmlScoreLevel = xmlScoreCategory.getElementsByTagName('level')[levelCode[1]];
 
-    level.moves = xmlLevel.getAttribute("moves");
+    level.moves = xmlScoreLevel.getAttribute("moves");
     var xmlDot = xmlLevel.getElementsByTagName('dot');
     level.best = xmlDot.length / 2; // dots/2 = pipeline number
 
@@ -102,9 +162,9 @@ function getLevelInfo(levelCode) {
 function setLevelMoves(levelCode, moves) {
     levelCode = levelCode.split('-');
 
-    var xmlCategory = xmlDoc.getElementsByTagName('category')[levelCode[0]];
-    var xmlLevel = xmlCategory.getElementsByTagName('level')[levelCode[1]];
-    xmlLevel.setAttribute("moves", moves);
+    var xmlScoreCategory = xmlDocScores.getElementsByTagName('category')[levelCode[0]];
+    var xmlScoreLevel = xmlScoreCategory.getElementsByTagName('level')[levelCode[1]];
+    xmlScoreLevel.setAttribute("moves", moves);
 
     saveDataFile();
 }
@@ -112,20 +172,53 @@ function setLevelMoves(levelCode, moves) {
 
 
 
-function createRandomLevels(size, pairDotsNumber) {
-    /* RULES:
-        - Two dots of the same pair can not stay in contiguous cells
-        - A level can be solved <====> you can complete all flows & fill the entire board
-    */
 
+
+
+
+
+function createRandomLevels(size, dots, code) {
+    console.log('<level code="' + code + '">');
+
+    var pipes = solveLevel(size, dots);
+    var dotIndex = 0;
+    for (var x = 0; x < pipes.length; x++) {
+
+        var i = dots[dotIndex].position.i;
+        var j = dots[dotIndex].position.j;
+        var pos = i + "x" + j
+        dotIndex++;
+        console.log('<dot pair="' + x + '" position="' + pos + '"/>');
+
+        i = dots[dotIndex].position.i;
+        j = dots[dotIndex].position.j;
+        pos = i + "x" + j
+        dotIndex++;
+        console.log('<dot pair="' + x + '" position="' + pos + '"/>');
+
+        console.log('<solution pair"' + x + '">');
+        for (var y = 0; y < pipes[x].length; y++) {
+            i = dots[dotIndex].position.i;
+            j = dots[dotIndex].position.j;
+            pos = i + "x" + j
+            console.log('<path position="' + pos + '"/>');
+        }
+        console.log('</solution>');
+    }
+
+    console.log('</level>');
 }
 
 
 
-var FREE = -1;
-var OCCUPY = -2;
+
+
+
+
 var pathsMatrix;
 var currentPair;
+var numCells;
+var cartesianProd;
 function solveLevel(size, dots) {
     // INITIALIZING DATA STRUCTURES
     // pipes & paths
@@ -165,12 +258,16 @@ function solveLevel(size, dots) {
     // JOINING PARTIAL SOLUTIONS
     // trying different combinations of paths of each dot pair to find one that fills the entire board
     var solved = false;
-    var combinations = cartesianProductOf(pathsMatrix);
+    numCells = size.i * size.j;
+    cartesianProd = new Array();
+    //var combinations = cartesianProductOf(pathsMatrix);
+    //var combinations = cartesianProduct(pathsMatrix);
+    cartesianProduct(new Array(), 0);
     var x = 0;
-    while (!solved && x < combinations.length) {
-        if (isSolution(cloneMatrix(boardMatrix), combinations[x])) {
+    while (!solved && x < cartesianProd.length) {
+        if (isSolution(cloneMatrix(boardMatrix), cartesianProd[x])) {
             solved = true;
-            pipes = combinations[x];
+            pipes = cartesianProd[x];
         }
         x++;
     }
@@ -211,7 +308,12 @@ function getDotsPairPositions(pair, dots) {
 
 
 function calculatePaths(path, pos, lastPos, boardMatrix) {
-    console.log("[" + pos.i + ", " + pos.j + "]");
+    //console.log("[" + pos.i + ", " + pos.j + "]");
+
+    // heuristics
+    if (path.length > 15) {
+        return;
+    }
 
     // depth-first tree traversal
     if (isLastPosition(pos, lastPos)) {
@@ -294,7 +396,7 @@ function cloneMatrix(mat) {
     var matAux = new Array();
     for (var x = 0; x < mat.length; x++) {
         matAux[x] = new Array();
-        for (var y = 0; y < mat[0].length; y++) {
+        for (var y = 0; y < mat[x].length; y++) {
             matAux[x][y] = mat[x][y];
         }
     }
@@ -312,6 +414,32 @@ function cartesianProductOf(arguments) {
         });
         return ret;
     }, [[]]);
+}
+
+
+function cartesianProduct(combAux, n) {
+    if (n == pathsMatrix.length) { // pathsMatrix.length == pipes number
+        if (isPossibleSolution(combAux)) {
+            // save possible soluton
+            cartesianProd.push(cloneMatrix(combAux));
+        }
+    } else {
+        for (var x = 0; x < pathsMatrix[n].length; x++) { // for each path
+            var path = pathsMatrix[n][x];
+            combAux.push(path);
+            cartesianProduct2(combAux, n + 1);
+            combAux.splice(combAux.length - 1, 1);
+        }
+    }
+}
+
+
+function isPossibleSolution(combination) {
+    var sum = 0;
+    for (var x = 0; x < combination.length; x++) {
+        sum += combination[x].length;
+    }
+    return sum == numCells;
 }
 
 

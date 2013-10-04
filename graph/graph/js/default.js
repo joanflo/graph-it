@@ -13,12 +13,11 @@ var game;
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
 
-
     app.addEventListener("activated", function (args) {
 
         loadCharacterImages();
         initSounds();
-        openDataFile();
+        openDataFiles();
 
 
         if (args.detail.kind === activation.ActivationKind.launch) {
