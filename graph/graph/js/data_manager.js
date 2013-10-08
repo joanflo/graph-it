@@ -16,6 +16,74 @@ var OCCUPY = -2;
 
 
 function openDataFiles() {
+    // settings
+    var loadSettings = new Windows.Data.Xml.Dom.XmlLoadSettings;
+    loadSettings.prohibitDtd = false;
+    loadSettings.resolveExternals = false;
+
+    // get data file
+    var uri1 = new Windows.Foundation.Uri('ms-appx:///data/data.xml');
+    Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri1).then(function (file) {
+        return file;
+    }).done(function (file) {
+        dataFile = file;
+
+        Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+            xmlDocData = doc;
+
+            // get scores file
+            Windows.Storage.ApplicationData.current.roamingFolder.getFileAsync("scores.xml").then(function (file) {
+                return file;
+            }).done(function (file) {
+                scoresFile = file;
+
+                Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+                    xmlDocScores = doc;
+                }, false);
+            }, function (error) {
+
+                // file doesn't exists, let's create it
+                Windows.Storage.ApplicationData.current.roamingFolder.createFileAsync("scores.xml", Windows.Storage.CreationCollisionOption.replaceExisting).then(function (file) {
+
+                    var auxDOM = xmlDocData.getElementsByTagName('category');
+                    var maxCategories = auxDOM.length;
+                    auxDOM = auxDOM[0].getElementsByTagName('level');
+                    var itemsPerCateory = auxDOM.length;
+
+                    var memoryStream = new Windows.Storage.Streams.InMemoryRandomAccessStream();
+                    var dataWriter = new Windows.Storage.Streams.DataWriter(memoryStream);
+
+                    var NEW_LINE = "\n";
+                    var TAB = "\t";
+                    var strScores = '<?xml version="1.0" encoding="utf-8"?>'
+                                    + NEW_LINE
+                                    + "<scores>"
+                                    + NEW_LINE;
+
+                    for (var x = 0; x < maxCategories; x++) {
+                        strScores += TAB + "<category>" + NEW_LINE;
+                        for (var y = 0; y < itemsPerCateory; y++) {
+                            strScores += TAB + TAB + '<level moves="0" code="' + x + '-' + y + '"/>' + NEW_LINE;
+                        }
+                        strScores += TAB + "</category>" + NEW_LINE + NEW_LINE;
+                    }
+
+                    strScores += "</scores>";
+                    dataWriter.writeString(strScores);
+
+                    var buffer = dataWriter.detachBuffer();
+                    dataWriter.close();
+
+                    Windows.Storage.FileIO.writeBufferAsync(file, buffer).done(function (file) {
+                        openDataFiles();
+                    });
+                });
+            });
+
+        }, false);
+    }, false);
+
+    /*
     var loadSettings = new Windows.Data.Xml.Dom.XmlLoadSettings;
     loadSettings.prohibitDtd = false;
     loadSettings.resolveExternals = false;
@@ -30,7 +98,9 @@ function openDataFiles() {
         Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
             xmlDocData = doc;
         }, false);
-    }, false);
+    }, function (error) {
+        console.log("error 1");
+    });
 
     // get scores file
     Windows.Storage.ApplicationData.current.roamingFolder.getFileAsync("scores.xml").then(function (file) {
@@ -47,16 +117,17 @@ function openDataFiles() {
         Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri2).then(function (file) {
             return file;
         }).done(function (file) {
-            file.moveAsync(Windows.Storage.ApplicationData.current.roamingFolder).then(function (file) {
+            file.copyAsync(Windows.Storage.ApplicationData.current.roamingFolder).then(function (file) {
                 scoresFile = file;
                 Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
                     xmlDocScores = doc;
                 }, false);
             });
         }, function (error) {
-            console.log("error");
+            console.log("error 2");
         });
     });
+    */
 }
 
 

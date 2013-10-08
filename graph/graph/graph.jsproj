@@ -47,7 +47,9 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>graph_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>graph_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>0D7B77E24D341A70235E260826D89AC26FA3241D</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="css\default.css" />
@@ -56,6 +58,7 @@
     <Content Include="data\scores.dtd" />
     <Content Include="data\scores.xml" />
     <Content Include="default.html" />
+    <None Include="graph_StoreKey.pfx" />
     <Content Include="images\game\bg0.png" />
     <Content Include="images\game\bg1.png" />
     <Content Include="images\game\bg10.png" />
@@ -166,6 +169,7 @@
     <Content Include="js\soundmanager2.js" />
     <Content Include="js\sound_manager.js" />
     <Content Include="js\text_manager.js" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="pages\about\about.html" />
     <Content Include="pages\game\board.js" />
     <Content Include="pages\game\game.css" />
