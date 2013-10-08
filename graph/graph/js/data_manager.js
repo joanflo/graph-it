@@ -21,7 +21,6 @@ function openDataFiles() {
     loadSettings.resolveExternals = false;
 
     // get data file
-    /*
     var uri1 = new Windows.Foundation.Uri('ms-appx:///data/data.xml');
     Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri1).then(function (file) {
         return file;
@@ -32,25 +31,8 @@ function openDataFiles() {
             xmlDocData = doc;
         }, false);
     }, false);
-    */
+
     // get scores file
-
-    var uri2 = new Windows.Foundation.Uri('ms-appx:///data/hola.txt');
-    Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri2).then(function (file) {
-        return file;
-    }).done(function (file) {
-        /*
-        file.moveAsync(Windows.Storage.ApplicationData.current.roamingFolder);
-
-        scoresFile = file;
-        Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
-            xmlDocScores = doc;
-        }, false);
-        */
-    }, function (error) {
-        console.log(error);
-    });
-    /*
     Windows.Storage.ApplicationData.current.roamingFolder.getFileAsync("scores.xml").then(function (file) {
         return file;
     }).done(function (file) {
@@ -61,24 +43,20 @@ function openDataFiles() {
         }, false);
     }, function (error) {
         // file doesn't exists, let's create it
-        console.log("1");
         var uri2 = new Windows.Foundation.Uri('ms-appx:///data/scores.xml');
         Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri2).then(function (file) {
-            console.log("2");
             return file;
         }).done(function (file) {
             file.moveAsync(Windows.Storage.ApplicationData.current.roamingFolder).then(function (file) {
                 scoresFile = file;
-                console.log("3");
                 Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
                     xmlDocScores = doc;
-                    console.log("4");
                 }, false);
             });
-        }, false);
-        console.log("5");
+        }, function (error) {
+            console.log("error");
+        });
     });
-    */
 }
 
 
@@ -172,11 +150,6 @@ function setLevelMoves(levelCode, moves) {
 
 
 
-
-
-
-
-
 function createRandomLevels(size, dots, code) {
     console.log('<level code="' + code + '">');
 
@@ -208,9 +181,6 @@ function createRandomLevels(size, dots, code) {
 
     console.log('</level>');
 }
-
-
-
 
 
 
@@ -259,15 +229,18 @@ function solveLevel(size, dots) {
     // trying different combinations of paths of each dot pair to find one that fills the entire board
     var solved = false;
     numCells = size.i * size.j;
-    cartesianProd = new Array();
-    //var combinations = cartesianProductOf(pathsMatrix);
+    //cartesianProd = new Array();
+    var combinations = cartesianProductOf(pathsMatrix);
     //var combinations = cartesianProduct(pathsMatrix);
-    cartesianProduct(new Array(), 0);
+    //cartesianProduct(new Array(), 0);
     var x = 0;
-    while (!solved && x < cartesianProd.length) {
-        if (isSolution(cloneMatrix(boardMatrix), cartesianProd[x])) {
-            solved = true;
-            pipes = cartesianProd[x];
+    while (!solved && x < combinations.length) {
+        var combAux = combinations[x];
+        if (isPossibleSolution(combAux)) {
+            if (isSolution(cloneMatrix(boardMatrix), combAux)) {
+                solved = true;
+                pipes = combAux;
+            }
         }
         x++;
     }

@@ -24,7 +24,7 @@
 			<dot pair="3" position="1x3"/>
 			<dot pair="3" position="4x4"/>
 		</level>
-		<level code="1-">
+		<level code="0-2">
 			<dot pair="0" position="0x4"/>
 			<dot pair="0" position="4x4"/>
 			<dot pair="1" position="0x1"/>
@@ -34,7 +34,7 @@
 			<dot pair="3" position="4x1"/>
 			<dot pair="3" position="4x3"/>
 		</level>
-		<level code="1-">
+		<level code="0-3">
 			<dot pair="0" position="0x0"/>
 			<dot pair="0" position="3x3"/>
 			<dot pair="1" position="1x0"/>
@@ -44,7 +44,7 @@
 			<dot pair="3" position="0x4"/>
 			<dot pair="3" position="4x2"/>
 		</level>
-		<level code="1-">
+		<level code="0-4">
 			<dot pair="0" position="0x3"/>
 			<dot pair="0" position="2x2"/>
 			<dot pair="1" position="0x4"/>
@@ -1430,6 +1430,7 @@
 			<dot pair="4" position="6x2"/>
 			<dot pair="5" position="6x4"/>
 			<dot pair="5" position="6x5"/>
+		</level>
 		<level code="4-15">
 			<dot pair="0" position="0x0"/>
 			<dot pair="0" position="0x1"/>
@@ -1446,7 +1447,7 @@
 			<dot pair="6" position="6x0"/>
 			<dot pair="6" position="6x1"/>
 		</level>
-		</level><level code="4-16">
+		<level code="4-16">
 			<dot pair="0" position="0x6"/>
 			<dot pair="0" position="6x1"/>
 			<dot pair="1" position="1x1"/>
@@ -2127,6 +2128,22 @@
 			<dot pair="6" position="6x5"/>
 			<dot pair="7" position="4x7"/>
 			<dot pair="7" position="6x6"/>
+		</level>
+		<level code="6-6">
+			<dot pair="0" position="3x7"/>
+			<dot pair="0" position="7x0"/>
+			<dot pair="1" position="0x7"/>
+			<dot pair="1" position="4x1"/>
+			<dot pair="2" position="5x1"/>
+			<dot pair="2" position="6x4"/>
+			<dot pair="3" position="3x6"/>
+			<dot pair="3" position="6x6"/>
+			<dot pair="4" position="0x6"/>
+			<dot pair="4" position="6x0"/>
+			<dot pair="5" position="1x6"/>
+			<dot pair="5" position="2x1"/>
+			<dot pair="6" position="4x4"/>
+			<dot pair="6" position="6x1"/>
 		</level>
 		<level code="6-7">
 			<dot pair="0" position="2x4"/>
@@ -4310,7 +4327,6 @@
 			<dot pair="7" position="7x6"/>
 		</level>
 		<level code="11-1">
-			<dot pair="-8" position="7x9"/>
 			<dot pair="0" position="0x0"/>
 			<dot pair="0" position="5x9"/>
 			<dot pair="1" position="1x5"/>
@@ -4328,6 +4344,7 @@
 			<dot pair="7" position="4x5"/>
 			<dot pair="7" position="7x2"/>
 			<dot pair="8" position="7x4"/>
+			<dot pair="8" position="7x9"/>
 			<dot pair="9" position="6x6"/>
 			<dot pair="9" position="6x9"/>
 		</level>
@@ -5113,7 +5130,6 @@
 			<dot pair="8" position="10x10"/>
 		</level>
 		<level code="12-12">
-			<dot pair="-4" position="8x9"/>
 			<dot pair="0" position="0x0"/>
 			<dot pair="0" position="2x4"/>
 			<dot pair="1" position="2x1"/>
@@ -5122,6 +5138,7 @@
 			<dot pair="2" position="8x3"/>
 			<dot pair="3" position="7x3"/>
 			<dot pair="3" position="9x9"/>
+			<dot pair="4" position="8x9"/>
 			<dot pair="4" position="10x2"/>
 			<dot pair="5" position="0x5"/>
 			<dot pair="5" position="10x3"/>
@@ -7018,7 +7035,6 @@
 			<dot pair="11" position="8x7"/>
 		</level>
 		<level code="15-14">
-			<dot pair="-5" position="11x6"/>
 			<dot pair="0" position="5x9"/>
 			<dot pair="0" position="9x1"/>
 			<dot pair="1" position="2x6"/>
@@ -7029,6 +7045,7 @@
 			<dot pair="3" position="6x3"/>
 			<dot pair="4" position="6x4"/>
 			<dot pair="4" position="8x6"/>
+			<dot pair="5" position="11x6"/>
 			<dot pair="5" position="0x6"/>
 			<dot pair="6" position="0x7"/>
 			<dot pair="6" position="4x5"/>

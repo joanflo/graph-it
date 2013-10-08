@@ -62,10 +62,21 @@
                 buttons[i].addEventListener("click", controlManager, true);
             }
             document.getElementById('confirmHelp').addEventListener("click", askUseHelp, true);
+            document.getElementById('hints10').addEventListener("click", inAppPurchasing, true);
+            document.getElementById('hints20').addEventListener("click", inAppPurchasing, true);
 
             // share contract
             var dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
             dataTransferManager.addEventListener("datarequested", dataRequested);
+
+            // hints left
+            var appData = Windows.Storage.ApplicationData;
+            var hintsLeft;
+            if ((hintsLeft = appData.current.roamingSettings.values["hintsLeft"]) == undefined) {
+                appData.current.roamingSettings.values["hintsLeft"] = 5;
+                hintsLeft = 5;
+            }
+            document.getElementById('remainingHints').innerText = hintsLeft;
 
             doterama.startGame();
         },
@@ -145,20 +156,30 @@
 
 
     function askUseHelp() {
-        // roaming settings --> hints left
-
-        
         var index = board.getFirstPipeIndex();
         if (index == -1) {
-            // all pipes completed
-
+            // all pipes completed (but level not finished)
+            var msg = new Windows.UI.Popups.MessageDialog("To use the hint please undo at least one pipe.", "All pipes completed");
+            msg.showAsync();
         } else {
-            var t = new Date().getTime();//borrar
-            var pipes = solveLevel(level.size, level.dots);
-            console.log(new Date().getTime() - t);//borrar
-            board.setPipe(pipes[index], index);
+            // hints left
+            var appData = Windows.Storage.ApplicationData;
+            var hintsLeft = appData.current.roamingSettings.values["hintsLeft"];
+            if (hintsLeft == 0) {
+                // in-app purchase
+
+            } else {
+                hintsLeft--;
+
+                var t = new Date().getTime();//borrar
+                var pipes = solveLevel(level.size, level.dots);
+                console.log(new Date().getTime() - t);//borrar
+                board.updateMoves();
+                board.setPipe(pipes[index], index);
+
+                document.getElementById('remainingHints').innerText = hintsLeft;
+            }
         }
-        
     }
 
 
@@ -203,7 +224,7 @@
         updateMarker(movesMarker, gameInfo.moves);
 
         // level completed?
-        if (gameInfo.flows == level.best) {
+        if (gameInfo.flows == level.best && gameInfo.fill == 100) {
             doterama.stopGame();
             listenSound(LEVEL_COMPLETED_SOUND);
 
@@ -307,6 +328,34 @@
 
         var streamRef = Windows.Storage.Streams.RandomAccessStreamReference.createFromUri(new Windows.Foundation.Uri(localImage));
         request.data.resourceMap[localImage] = streamRef;
+    }
+
+
+    function inAppPurchasing(evt) {
+        var sum = 0;
+        switch (evt.currentTarget.id) {
+            case "hints10":
+                sum = 10;
+                break;
+            case "hints20":
+                sum = 20;
+                break;
+        }
+
+        if (licenseInformation.productLicenses.lookup(evt.id).isActive) {
+            currentApp.requestProductPurchaseAsync(evt.id, false).then(
+                function () {
+                    // Check the license state to determine if the in-app purchase was successful.
+                    var appData = Windows.Storage.ApplicationData;
+                    var hintsLeft = appData.current.roamingSettings.values["hintsLeft"];
+                    hintsLeft += sum;
+                    appData.current.roamingSettings.values["hintsLeft"] = hintsLeft;
+                    document.getElementById('remainingHints').innerText = hintsLeft;
+                },
+                function () {
+                    // The in-app purchase was not completed because there was an error.
+                });
+        }
     }
 
 

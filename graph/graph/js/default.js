@@ -4,6 +4,9 @@
 var ready = false;
 var game;
 
+var currentApp;
+var licenseInformation;
+
 (function () {
     "use strict";
 
@@ -13,12 +16,16 @@ var game;
     var activation = Windows.ApplicationModel.Activation;
     var nav = WinJS.Navigation;
 
+
     app.addEventListener("activated", function (args) {
 
         loadCharacterImages();
         initSounds();
         openDataFiles();
 
+        // in-app purchases
+        currentApp = Windows.ApplicationModel.Store.CurrentApp; // Get current product object 
+        licenseInformation = currentApp.licenseInformation; // Get the license info
 
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (app.sessionState.history) {
@@ -26,8 +33,7 @@ var game;
             }
             document.addEventListener("visibilitychange", function (e) {
                 if (ready) {
-                    //sendTileNotificationQueue();
-                    //rocks_n_gems.pauseGame();
+
                 }
             });
             args.setPromise(WinJS.UI.processAll().then(function () {

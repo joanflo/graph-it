@@ -84,6 +84,97 @@ div.level_item:hover {
 .type4:hover {
     background-image: url(/images/level/play_4.png);
 }
+.type5 {
+    background-color: #647687;
+}
+.type5:hover {
+    background-image: url(/images/level/play_5.png);
+}
+.type6 {
+    background-color: #8C0020;
+}
+.type6:hover {
+    background-image: url(/images/level/play_6.png);
+}
+.type7 {
+    background-color: #FF0089;
+}
+.type7:hover {
+    background-image: url(/images/level/play_7.png);
+}
+.type8 {
+    background-color: #163D0C;
+}
+.type8:hover {
+    background-image: url(/images/level/play_8.png);
+}
+.type9 {
+    background-color: #300073;
+}
+.type9:hover {
+    background-image: url(/images/level/play_9.png);
+}
+.type10 {
+    background-color: #FFFFFF;
+}
+.type10:hover {
+    background-image: url(/images/level/play_10.png);
+}
+.type11 {
+    background-color: #F56600;
+}
+.type11:hover {
+    background-image: url(/images/level/play_11.png);
+}
+.type12 {
+    background-color: #825A2C;
+}
+.type12:hover {
+    background-image: url(/images/level/play_12.png);
+}
+.type13 {
+    background-color: #310E43;
+}
+.type13:hover {
+    background-image: url(/images/level/play_13.png);
+}
+.type14 {
+    background-color: #BDB76B;
+}
+.type14:hover {
+    background-image: url(/images/level/play_14.png);
+}
+.type15 {
+    background-color: #FFFF00;
+}
+.type15:hover {
+    background-image: url(/images/level/play_15.png);
+}
+.type16 {
+    background-color: #0900FF;
+}
+.type16:hover {
+    background-image: url(/images/level/play_16.png);
+}
+.type17 {
+    background-color: #00FFBC;
+}
+.type17:hover {
+    background-image: url(/images/level/play_17.png);
+}
+.type18 {
+    background-color: #FF7D7D;
+}
+.type18:hover {
+    background-image: url(/images/level/play_18.png);
+}
+.type19 {
+    background-color: #C7C7C7;
+}
+.type19:hover {
+    background-image: url(/images/level/play_19.png);
+}
+
 
 .overlay_level_item {
     margin-top: 45px;

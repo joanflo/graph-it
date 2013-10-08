@@ -12,7 +12,7 @@
             var htmlCategories = document.getElementsByClassName('level_category_title');
 
             for (var i = 0; i < htmlCategories.length; i++) {
-                drawString(categoryList[i].name + " " + categoryList[i].size, htmlCategories[i], 40);
+                drawString(categoryList[i].name + "_" + categoryList[i].size, htmlCategories[i], 22);
                 
                 var levelList = categoryList[i].levelList;
                 var htmlLevels = htmlCategories[i].parentNode.getElementsByClassName('level_item');

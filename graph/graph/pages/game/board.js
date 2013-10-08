@@ -773,3 +773,7 @@ Board.prototype.isLastPosition = function (pipe, index) {
 Board.prototype.isFirstPosition = function (index) {
     return 0 == index;
 };
+
+Board.prototype.updateMoves = function () {
+    this.moves++;
+};

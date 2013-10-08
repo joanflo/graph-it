@@ -72,6 +72,12 @@ h3.charmsBar {
     float: right;
     background-color: white;
 }
+#hints10 {
+    background-color: white;
+}
+#hints20 {
+    background-color: white;
+}
 p.flyout {
     margin: 2px;
     color: white;

@@ -11,7 +11,7 @@
 
 <!-- level -->
 <!ELEMENT level (dot+)>
-<!ELEMENT level (solution+)>
+<!-- <!ELEMENT level (solution+)> -->
 <!ATTLIST level code CDATA #REQUIRED>
 
 <!-- dot -->
@@ -20,9 +20,13 @@
 <!ATTLIST dot position CDATA #REQUIRED>
 
 <!-- solution -->
+<!--
 <!ELEMENT solution (path+)>
 <!ATTLIST solution pair CDATA #REQUIRED>
+-->
 
 <!-- path -->
+<!--
 <!ELEMENT path EMPTY>
 <!ATTLIST path position CDATA #REQUIRED>
+-->
