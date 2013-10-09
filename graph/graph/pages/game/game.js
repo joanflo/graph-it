@@ -318,7 +318,7 @@
               "<img style='display:block;margin:auto;' src=\'" + localImage + "\'> "
             + "<p style='font-weight:bold;color:#fff;font-size:20px;padding:50px;margin:5px;background-color:#F96400;'>"
             + "I'm playing at Doterama application for Windows 8! "
-            + "<a href='http://win8privacygenerator.azurewebsites.net/privacy?dev=Unity%20Makes%20Software&app=Doterama&mail=am9hbi5nLmZsb3JpdEBnbWFpbC5jb20=&lng=En'>Download it</a>"
+            + "<a href='http://apps.microsoft.com/windows/es-es/app/doterama/806fbd64-923a-47cb-ac81-8f6e2a7f29bb'>Download it</a>"
             + " and join me!"
             + "</p>");
         var text = "I'm playing at Doterama application for Windows 8! Download it and join me!";

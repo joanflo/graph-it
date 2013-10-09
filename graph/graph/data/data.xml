@@ -511,7 +511,6 @@
 		<level code="1-20">
 			<dot pair="0" position="2x0"/>
 			<dot pair="0" position="4x4"/>
-			<dot pair="1" position="2x4"/>
 			<dot pair="1" position="3x1"/>
 			<dot pair="1" position="3x4"/>
 			<dot pair="2" position="1x0"/>
@@ -519,6 +518,7 @@
 			<dot pair="3" position="1x4"/>
 			<dot pair="3" position="2x1"/>
 			<dot pair="4" position="0x0"/>
+      <dot pair="4" position="0x4"/>
 		</level>
 		<level code="1-21">
 			<dot pair="0" position="0x3"/>

@@ -19,9 +19,9 @@
                 WinJS.UI.SettingsFlyout.showSettings("how_to_play", "/pages/how_to_play/how_to_play.html");
             }, false);
 
-            setTile("heading3", "https://www.facebook.com/sharer/sharer.php?u=http://win8privacygenerator.azurewebsites.net/privacy?dev=Unity%20Makes%20Software&app=Doterama&mail=am9hbi5nLmZsb3JpdEBnbWFpbC5jb20=&lng=En", true);
+            setTile("heading3", "https://www.facebook.com/sharer/sharer.php?u=http://apps.microsoft.com/windows/es-es/app/doterama/806fbd64-923a-47cb-ac81-8f6e2a7f29bb", true);
 
-            setTile("heading4", "https://twitter.com/intent/tweet?&text=I'm+playing+at+Doterama+application+for+Windows 8!+Download+it+and+join+me!+http://win8privacygenerator.azurewebsites.net/privacy?dev=Unity%20Makes%20Software&app=Doterama&mail=am9hbi5nLmZsb3JpdEBnbWFpbC5jb20=&lng=En", true);
+            setTile("heading4", "https://twitter.com/intent/tweet?&text=I'm+playing+at+Doterama+application+for+Windows 8!+Download+it+and+join+me!+http://apps.microsoft.com/windows/es-es/app/doterama/806fbd64-923a-47cb-ac81-8f6e2a7f29bb", true);
         },
 
         unload: function () {
