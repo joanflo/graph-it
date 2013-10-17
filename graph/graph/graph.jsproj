@@ -54,9 +54,15 @@
   <ItemGroup>
     <Content Include="css\default.css" />
     <Content Include="data\data.dtd" />
-    <Content Include="data\data.xml" />
+    <Content Include="data\data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="data\scores.dtd" />
     <Content Include="data\scores.xml" />
+    <Content Include="data\solutions.dtd" />
+    <Content Include="data\solutions.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="default.html" />
     <None Include="graph_StoreKey.pfx" />
     <Content Include="images\game\bg0.png" />

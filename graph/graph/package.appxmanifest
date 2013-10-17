@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="52167UnityMakesSoftware.Doterama" Version="1.0.0.3" Publisher="CN=4E351D62-B85C-426F-98A1-5108FC0E88E7" />
+  <Identity Name="52167UnityMakesSoftware.Doterama" Version="1.0.0.6" Publisher="CN=4E351D62-B85C-426F-98A1-5108FC0E88E7" />
   <Properties>
     <DisplayName>Doterama</DisplayName>
     <PublisherDisplayName>Unity Makes Software</PublisherDisplayName>

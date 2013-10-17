@@ -251,7 +251,7 @@ Board.prototype.continuePipe = function (cellCode, i, j) {
     var index = this.indexOfObject(pipe, pos);
     if (!this.isLastPosition(pipe, index)) {
         // deleting all positions from 'pos'
-        this.deletePipe(cellCode, i, j);    // TODO: pipe = this.... necessari?
+        this.deletePipe(cellCode, i, j);
         // setting all previous positions before 'pos'
         var firstPos = pipe[0];
         this.setCell(CELL_BACKGROUND_DOT, cellCode, firstPos[0], firstPos[1]);
@@ -473,7 +473,14 @@ Board.prototype.getPipeOrientation = function (pair, i, j) {
 };
 
 Board.prototype.setPipe = function (pipe, cellCode) {
-    var pipeAux = new Array();
+    // delete partial pipe (if there was)
+    var pipeAux = this.pipes[cellCode];
+    if (pipeAux != null) {
+        var firstPos = pipeAux[0];
+        this.deletePipe(cellCode, firstPos[0], firstPos[1]);
+    }
+
+    pipeAux = new Array();
 
     // initial dot
     var pos = pipe[0];
@@ -483,6 +490,12 @@ Board.prototype.setPipe = function (pipe, cellCode) {
     for (var x = 1; x < pipe.length - 1; x++) {
         pos = pipe[x];
         pipeAux[x] = [pos.i, pos.j];
+
+        var cell = this.getCell(pos.i, pos.j);
+        if (cell.code != null && cellCode != cell.code) { // current cell code != old cell code (overriding another pipe)
+            this.deletePipe(cell.code, pos.i, pos.j);
+        }
+
         this.setCell(CELL_BACKGROUND_PIPE, cellCode, pos.i, pos.j);
     }
     // final dot
@@ -495,6 +508,23 @@ Board.prototype.setPipe = function (pipe, cellCode) {
     // sound
     listenSound(PIPE_COMPLETED_SOUND);
 };
+
+Board.prototype.pipeOutOfBoard = function () {
+    if (this.isDrawingPipe) {
+        this.completePipe(this.currentCellCode);
+        if (this.currentCellCode != this.oldCellCode) {
+            this.oldCellCode = this.currentCellCode;
+            this.moves++;
+        }
+    }
+    this.currentCellCode = undefined;
+    this.oldCellPos = undefined;
+    this.isDrawingPipe = false;
+};
+
+Board.prototype.getPipes = function () {
+    return this.pipes;
+}
 
 
 

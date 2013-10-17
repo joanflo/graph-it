@@ -7,6 +7,10 @@ var dataFile;
 var xmlDocScores;
 var scoresFile;
 
+// solutons
+var xmlDocSolutions;
+var solutionsFile;
+
 var maxCategories;
 var levelsPerCategory;
 
@@ -219,42 +223,120 @@ function setLevelMoves(levelCode, moves) {
 }
 
 
+function createSolutionsFile() {
+    // file doesn't exists, let's create it
+    Windows.Storage.ApplicationData.current.roamingFolder.createFileAsync("solutions.xml", Windows.Storage.CreationCollisionOption.replaceExisting).then(function (file) {
 
+        var auxDOM = xmlDocData.getElementsByTagName('category');
+        var maxCategories = auxDOM.length;
+        auxDOM = auxDOM[0].getElementsByTagName('level');
+        var itemsPerCateory = auxDOM.length;
 
-function createRandomLevels(size, dots, code) {
-    console.log('<level code="' + code + '">');
+        var memoryStream = new Windows.Storage.Streams.InMemoryRandomAccessStream();
+        var dataWriter = new Windows.Storage.Streams.DataWriter(memoryStream);
 
-    var pipes = solveLevel(size, dots);
-    var dotIndex = 0;
-    for (var x = 0; x < pipes.length; x++) {
+        var NEW_LINE = "\n";
+        var TAB = "\t";
+        var strSolutions = '<?xml version="1.0" encoding="utf-8"?>'
+                        + NEW_LINE
+                        + "<solutions>"
+                        + NEW_LINE;
 
-        var i = dots[dotIndex].position.i;
-        var j = dots[dotIndex].position.j;
-        var pos = i + "x" + j
-        dotIndex++;
-        console.log('<dot pair="' + x + '" position="' + pos + '"/>');
-
-        i = dots[dotIndex].position.i;
-        j = dots[dotIndex].position.j;
-        pos = i + "x" + j
-        dotIndex++;
-        console.log('<dot pair="' + x + '" position="' + pos + '"/>');
-
-        console.log('<solution pair"' + x + '">');
-        for (var y = 0; y < pipes[x].length; y++) {
-            i = dots[dotIndex].position.i;
-            j = dots[dotIndex].position.j;
-            pos = i + "x" + j
-            console.log('<path position="' + pos + '"/>');
+        for (var x = 0; x < maxCategories; x++) {
+            strSolutions += TAB + "<category>" + NEW_LINE;
+            for (var y = 0; y < itemsPerCateory; y++) {
+                strSolutions += TAB + TAB + '<level code="' + x + '-' + y + '">' + NEW_LINE;
+                strSolutions += TAB + TAB + '</level>' + NEW_LINE;
+            }
+            strSolutions += TAB + "</category>" + NEW_LINE + NEW_LINE;
         }
-        console.log('</solution>');
+
+        strSolutions += "</solutions>";
+        dataWriter.writeString(strSolutions);
+
+        var buffer = dataWriter.detachBuffer();
+        dataWriter.close();
+
+        Windows.Storage.FileIO.writeBufferAsync(file, buffer).done(function (file) {
+            console.log("saved correctly");
+        });
+    });
+}
+
+
+function openSolutionsFile() {
+    if (solutionsFile == undefined) {
+        // settings
+        var loadSettings = new Windows.Data.Xml.Dom.XmlLoadSettings;
+        loadSettings.prohibitDtd = false;
+        loadSettings.resolveExternals = false;
+
+        // get solutions file
+        var uri = new Windows.Foundation.Uri('ms-appx:///data/solutions.xml');
+        Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri).then(function (file) {
+            return file;
+        }).done(function (file) {
+            solutionsFile = file;
+
+            Windows.Data.Xml.Dom.XmlDocument.loadFromFileAsync(file, loadSettings).then(function (doc) {
+                xmlDocSolutions = doc;
+            }, false);
+        }, false);
+    }
+}
+
+
+function addSolution(levelCode, pipes) {
+    levelCode = levelCode.split('-');
+    
+    var NEW_LINE = "\n";
+    var TAB = "\t";
+    var strLevel = TAB + TAB + '<level code="' + levelCode[0] + '-' + levelCode[1] + '">' + NEW_LINE;
+    for (var x = 0; x < pipes.length; x++) {
+        var pipe = pipes[x];
+        strLevel += TAB + TAB + TAB + '<solution pair="' + x + '">' + NEW_LINE;
+        for (var y = 0; y < pipe.length; y++) {
+            strLevel += TAB + TAB + TAB + TAB + '<path position="' + pipe[y][0] + "x" + pipe[y][1] + '"/>' + NEW_LINE;
+        }
+        strLevel += TAB + TAB + TAB + '</solution>' + NEW_LINE;
+    }
+    strLevel += TAB + TAB + '</level>' + NEW_LINE;
+
+    console.log(strLevel);
+}
+
+
+function getLevelSolution(levelCode) {
+    levelCode = levelCode.split('-');
+
+    var xmlSolutionCategory = xmlDocSolutions.getElementsByTagName('category')[levelCode[0]];
+    var xmlSolutionLevel = xmlSolutionCategory.getElementsByTagName('level')[levelCode[1]];
+
+    var xmlSolutions = xmlSolutionLevel.getElementsByTagName('solution');
+    var pipes = new Array(xmlSolutions.length);
+    for (var x = 0; x < xmlSolutions.length; x++) {
+
+        var xmlPaths = xmlSolutions[x].getElementsByTagName('path');
+        var pipe = new Array(xmlPaths.length);
+        for (var y = 0; y < xmlPaths.length; y++) {
+            var position = xmlPaths[y].getAttribute('position');
+            position = position.split('x');
+            var objPos = new Object();
+            objPos.i = position[0];
+            objPos.j = position[1];
+            pipe[y] = objPos;
+        }
+
+        pipes[x] = pipe;
     }
 
-    console.log('</level>');
+    return pipes;
 }
 
 
 
+
+// no used:
 
 var pathsMatrix;
 var currentPair;

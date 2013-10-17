@@ -52,6 +52,8 @@
             var gameBoard = document.getElementById("board");
             gameBoard.addEventListener("MSPointerDown", controlManager, false);
             gameBoard.addEventListener("MSPointerUp", controlManager, false);
+            var body = document.getElementsByTagName('body')[0];
+            body.addEventListener("MSPointerUp", controlManager, false);
             gameBoard.addEventListener("MSPointerMove", controlManager, false);
             var gesture = new MSGesture();
             gesture.target = gameBoard;
@@ -118,10 +120,21 @@
         switch (evt.type) {
             case "MSPointerMove":
             case "MSPointerDown":
-            case "MSPointerUp":
                 // touch & left mouse button only
                 if (evt.pointerType == evt.MSPOINTER_TYPE_TOUCH || evt.button == 0 || evt.type == "MSPointerMove") {
                     board.update(evt.offsetX, evt.offsetY, evt.type);
+                }
+                break;
+
+            case "MSPointerUp":
+                if (evt.currentTarget.localName == "canvas") {
+                    // touch & left mouse button only
+                    if (evt.pointerType == evt.MSPOINTER_TYPE_TOUCH || evt.button == 0) {
+                        board.update(evt.offsetX, evt.offsetY, evt.type);
+                    }
+                } else {
+                    // pointer up out of canvas bounds (discard buttons)
+                    board.pipeOutOfBoard();
                 }
                 break;
 
@@ -129,7 +142,7 @@
                 listenSound(CLICK_SOUND);
                 switch (evt.target.id) {
                     case "cmdHelp":
-                        //askUseHelp();
+                        openSolutionsFile();
                         break;
                     case "cmdHome":
                         WinJS.Navigation.navigate("pages/home/home.html", "yes");
@@ -151,34 +164,6 @@
                         break;
                 }
                 break;
-        }
-    }
-
-
-    function askUseHelp() {
-        var index = board.getFirstPipeIndex();
-        if (index == -1) {
-            // all pipes completed (but level not finished)
-            var msg = new Windows.UI.Popups.MessageDialog("To use the hint please undo at least one pipe.", "All pipes completed");
-            msg.showAsync();
-        } else {
-            // hints left
-            var appData = Windows.Storage.ApplicationData;
-            var hintsLeft = appData.current.roamingSettings.values["hintsLeft"];
-            if (hintsLeft == 0) {
-                // in-app purchase
-
-            } else {
-                hintsLeft--;
-
-                var t = new Date().getTime();//borrar
-                var pipes = solveLevel(level.size, level.dots);
-                console.log(new Date().getTime() - t);//borrar
-                board.updateMoves();
-                board.setPipe(pipes[index], index);
-
-                document.getElementById('remainingHints').innerText = hintsLeft;
-            }
         }
     }
 
@@ -225,6 +210,8 @@
 
         // level completed?
         if (gameInfo.flows == level.best && gameInfo.fill == 100) {
+            //addSolution(levelInfo[0] + "-" + levelInfo[1], board.getPipes());
+
             doterama.stopGame();
             listenSound(LEVEL_COMPLETED_SOUND);
 
@@ -251,7 +238,7 @@
 
             setTimeout(function () {
                 msg.showAsync();
-            }, 800);
+            }, 600);
         }
     }
 
@@ -333,7 +320,8 @@
 
     function inAppPurchasing(evt) {
         var sum = 0;
-        switch (evt.currentTarget.id) {
+        var featureName = evt.currentTarget.id;
+        switch (featureName) {
             case "hints10":
                 sum = 10;
                 break;
@@ -342,19 +330,60 @@
                 break;
         }
 
-        if (licenseInformation.productLicenses.lookup(evt.id).isActive) {
-            currentApp.requestProductPurchaseAsync(evt.id, false).then(
-                function () {
-                    // Check the license state to determine if the in-app purchase was successful.
+        currentApp.requestProductPurchaseAsync(featureName, true).done(
+            function (includeReceipt) {
+                /*
+                We should check the license state to determine if the in-app purchase was successful.
+                This way: licenseInformation.productLicenses.lookup("featureName").isActive
+                But there was a problem: our in-app purchase are 'consumable' (not 'durable'). But 'consumable' in-app purchases are only
+                supported in Windows 8.1 (http://msdn.microsoft.com/en-us/library/windows/apps/windows.applicationmodel.store.producttype)
+                and we want offer this in-app purchase for Windows 8 too.
+                Therefore, the trick is enable include receipt answer (http://msdn.microsoft.com/en-us/library/windows/apps/hh967814.aspx)
+                and check his value. If it's not an empty string, the in-app bought was succesful.
+                */
+                if (includeReceipt != "") {
+                    // Product bought
                     var appData = Windows.Storage.ApplicationData;
                     var hintsLeft = appData.current.roamingSettings.values["hintsLeft"];
                     hintsLeft += sum;
                     appData.current.roamingSettings.values["hintsLeft"] = hintsLeft;
                     document.getElementById('remainingHints').innerText = hintsLeft;
-                },
-                function () {
-                    // The in-app purchase was not completed because there was an error.
-                });
+                }
+            },
+            function (error) {
+                // The in-app purchase was not completed because there was an error.
+                var msg = new Windows.UI.Popups.MessageDialog("The purchase was not completed because there was an error.", "Purchase not completed");
+                msg.showAsync();
+            });
+    }
+
+
+    function askUseHelp() {
+        var index = board.getFirstPipeIndex();
+        if (index == -1) {
+            // all pipes completed (but level not finished)
+            var msg = new Windows.UI.Popups.MessageDialog("To use the hint please undo at least one pipe.", "All pipes completed");
+            msg.showAsync();
+        } else {
+            // hints left
+            var appData = Windows.Storage.ApplicationData;
+            var hintsLeft = appData.current.roamingSettings.values["hintsLeft"];
+            if (hintsLeft == 0) {
+                // in-app purchase
+                var msg = new Windows.UI.Popups.MessageDialog("There's 0 hints left. You can buy 10 or 20 more hints.", "0 hints left");
+                msg.showAsync();
+            } else {
+                hintsLeft--;
+                appData.current.roamingSettings.values["hintsLeft"] = hintsLeft;
+                var pipes = getLevelSolution(levelInfo[0] + "-" + levelInfo[1]);
+                board.updateMoves();
+                board.setPipe(pipes[index], index);
+                document.getElementById('remainingHints').innerText = hintsLeft;
+
+                //var t = new Date().getTime();
+                //var pipes = solveLevel(level.size, level.dots);
+                //console.log(new Date().getTime() - t);
+            }
         }
     }
 

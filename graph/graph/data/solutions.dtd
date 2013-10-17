@@ -1,0 +1,20 @@
+<?xml encoding="UTF-8"?>
+
+
+<!-- Root -->
+<!ELEMENT solutions (category+)>
+
+<!-- category -->
+<!ELEMENT category (level+)>
+
+<!-- level -->
+<!ELEMENT level (solution+)>
+<!ATTLIST level code CDATA #REQUIRED>
+
+<!-- solution -->
+<!ELEMENT solution (path*)>
+<!ATTLIST solution pair CDATA #REQUIRED>
+
+<!-- path -->
+<!ELEMENT path EMPTY>
+<!ATTLIST path position CDATA #REQUIRED>
